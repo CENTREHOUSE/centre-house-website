@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Centre House</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #137053;
+      --egg:   #FFFFFB;
+      --grey:  #F3F3F3;
+      --black: #050505;
+      --sans:  'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --serif: 'Playfair Display', 'Times New Roman', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--egg); color: var(--black); overflow-x: hidden; cursor: none; }
+
+    /* ─── GRAIN ─────────────────────────────────────────── */
+    .grain { position: relative; }
+    .grain::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: .055; mix-blend-mode: multiply;
+    }
+    .grain-dark::before { mix-blend-mode: overlay; opacity: .12; }
+    .grain-green::before { mix-blend-mode: overlay; opacity: .22; }
+
+    /* ─── CURSOR ─────────────────────────────────────────── */
+    #cur-dot  { position: fixed; width: 8px; height: 8px; background: var(--green); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform .1s; }
+    #cur-ring { position: fixed; width: 34px; height: 34px; border: 1.5px solid var(--green); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .2s, height .2s, opacity .2s; opacity: .55; }
+
+    /* ─── NAV ───────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      padding: 28px 56px; display: flex; align-items: center; justify-content: space-between;
+      transition: background .4s, border-bottom-color .4s;
+      border-bottom: 1px solid transparent;
+    }
+    nav.scrolled { background: rgba(255,255,251,.96); border-bottom-color: rgba(19,112,83,.15); backdrop-filter: blur(8px); }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-links { display: flex; gap: 44px; list-style: none; }
+    .nav-links a { font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--egg); text-decoration: none; opacity: .75; transition: opacity .2s, color .3s; }
+    .nav-links a:hover, .nav-links a.active { opacity: 1; }
+    nav.scrolled .nav-links a { color: var(--black); opacity: .6; }
+    nav.scrolled .nav-links a:hover, nav.scrolled .nav-links a.active { opacity: 1; }
+    .nav-cta { background: var(--green) !important; color: var(--egg) !important; opacity: 1 !important; padding: 10px 24px; transition: background .2s !important; }
+    .nav-cta:hover { background: var(--black) !important; }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    .about-hero {
+      min-height: 100svh; background: var(--black);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 56px 88px; position: relative; overflow: hidden;
+    }
+    .about-hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(19,112,83,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(19,112,83,.1) 0%, transparent 60%);
+    }
+    .about-hero > *:not(.about-hero-bg) { position: relative; z-index: 2; }
+    .about-hero-eyebrow {
+      font-size: 10px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--egg); margin-bottom: 40px;
+      display: inline-flex; align-items: center; gap: 10px; align-self: flex-start;
+      border: 1px solid rgba(255,255,251,.18); padding: 9px 18px 9px 13px;
+      border-radius: 100px; background: rgba(255,255,251,.06); backdrop-filter: blur(12px);
+    }
+    .about-hero-eyebrow::before {
+      content: ''; display: block; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green); flex-shrink: 0; animation: pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(19,112,83,.7); }
+      60%      { box-shadow: 0 0 0 6px rgba(19,112,83,0); }
+    }
+    .about-hero-hl {
+      font-family: var(--sans); font-size: clamp(56px, 8vw, 128px);
+      font-weight: 600; line-height: .9; letter-spacing: -.03em;
+      text-transform: uppercase; color: var(--egg);
+    }
+    .about-hero-hl em {
+      font-family: var(--serif); font-style: italic; font-weight: 700;
+      text-transform: none; color: var(--green); letter-spacing: -.01em;
+    }
+    .about-hero-foot {
+      margin-top: 56px; padding-top: 40px;
+      border-top: 1px solid rgba(255,255,251,.12);
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 40px;
+    }
+    .about-hero-desc {
+      font-family: var(--serif); font-style: italic;
+      font-size: clamp(16px, 1.4vw, 20px); line-height: 1.65;
+      color: var(--egg); opacity: .75; max-width: 520px;
+      padding-left: 20px; border-left: 2px solid var(--green);
+    }
+    .about-hero-scroll {
+      font-size: 10px; font-weight: 500; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--egg); opacity: .25;
+      flex-shrink: 0;
+    }
+
+    /* ─── MANIFESTO ──────────────────────────────────────── */
+    .manifesto {
+      padding: 130px 56px; display: grid;
+      grid-template-columns: 1fr 1fr; gap: 88px; align-items: start;
+    }
+    .manifesto-quote {
+      font-family: var(--serif); font-style: italic;
+      font-size: clamp(32px, 3.5vw, 52px); font-weight: 700;
+      line-height: 1.1; color: var(--black);
+    }
+    .manifesto-quote em { color: var(--green); font-style: normal; }
+    .manifesto-body { padding-top: 8px; }
+    .manifesto-label {
+      font-size: 10px; font-weight: 500; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 28px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .manifesto-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--green); }
+    .manifesto-copy { font-size: 16px; line-height: 1.85; color: var(--black); opacity: .6; }
+    .manifesto-copy p + p { margin-top: 22px; }
+
+    /* ─── VALUES TICKER ──────────────────────────────────── */
+    .values-band {
+      border-top: 1px solid rgba(5,5,5,.1); border-bottom: 1px solid rgba(5,5,5,.1);
+      background: var(--green); overflow: hidden; padding: 0;
+      display: flex; align-items: center;
+    }
+    .values-track {
+      display: flex; white-space: nowrap;
+      animation: valscroll 28s linear infinite;
+      padding: 22px 0;
+    }
+    .values-track:hover { animation-play-state: paused; }
+    @keyframes valscroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .value-item {
+      display: flex; align-items: center; gap: 32px;
+      padding: 0 40px;
+    }
+    .value-item span {
+      font-size: 11px; font-weight: 600; letter-spacing: .25em;
+      text-transform: uppercase; color: var(--egg); opacity: .9;
+    }
+    .value-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,251,.35); flex-shrink: 0; }
+
+    /* ─── APPROACH ───────────────────────────────────────── */
+    .approach { padding: 130px 56px; background: var(--black); }
+    .approach-head { margin-bottom: 80px; }
+    .approach-label {
+      font-size: 10px; font-weight: 500; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--egg); opacity: .35; margin-bottom: 20px;
+    }
+    .approach-title {
+      font-family: var(--sans); font-size: clamp(36px, 4vw, 64px);
+      font-weight: 600; letter-spacing: -.025em; text-transform: uppercase;
+      line-height: .95; color: var(--egg);
+    }
+    .approach-title em {
+      font-family: var(--serif); font-style: italic;
+      font-weight: 700; text-transform: none; color: var(--green);
+    }
+    .approach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .approach-card {
+      background: rgba(255,255,251,.04); border: 1px solid rgba(255,255,251,.07);
+      padding: 52px 44px; display: flex; flex-direction: column; gap: 24px;
+      transition: background .3s;
+    }
+    .approach-card:hover { background: rgba(255,255,251,.08); }
+    .approach-num {
+      font-size: 11px; font-weight: 500; letter-spacing: .15em;
+      color: var(--green); font-variant-numeric: tabular-nums;
+    }
+    .approach-card-title {
+      font-family: var(--sans); font-size: 22px; font-weight: 600;
+      letter-spacing: -.01em; text-transform: uppercase; color: var(--egg);
+      line-height: 1.1;
+    }
+    .approach-card-desc { font-size: 14px; line-height: 1.75; color: var(--egg); opacity: .45; }
+
+    /* ─── TEAM ───────────────────────────────────────────── */
+    .team { padding: 130px 56px; }
+    .team-head { margin-bottom: 72px; }
+    .team-label {
+      font-size: 10px; font-weight: 500; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 20px;
+    }
+    .team-title {
+      font-family: var(--sans); font-size: clamp(36px, 4vw, 64px);
+      font-weight: 600; letter-spacing: -.025em; text-transform: uppercase;
+      line-height: .95; color: var(--black);
+    }
+    .team-title em {
+      font-family: var(--serif); font-style: italic;
+      font-weight: 700; text-transform: none; color: var(--green);
+    }
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .team-card { display: flex; flex-direction: column; gap: 20px; }
+    .team-img {
+      width: 100%; aspect-ratio: 3/4; overflow: hidden;
+      background: var(--grey);
+      border: 1px dashed rgba(19,112,83,.25);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; position: relative;
+    }
+    .team-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+    .team-img-ph { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .team-img-ph svg { opacity: .2; }
+    .team-img-ph span {
+      font-size: 10px; font-weight: 500; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--black); opacity: .3;
+    }
+    .team-card-tag {
+      font-size: 10px; font-weight: 500; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 4px;
+    }
+    .team-card-name {
+      font-size: 22px; font-weight: 600; letter-spacing: -.01em;
+      text-transform: uppercase; color: var(--black); line-height: 1;
+    }
+    .team-card-role { font-size: 13px; color: var(--black); opacity: .45; margin-top: 4px; }
+
+    /* ─── STATS (green) ──────────────────────────────────── */
+    .stats-band {
+      padding: 120px 56px; background: var(--green);
+      position: relative; overflow: hidden;
+    }
+    .stats-band > * { position: relative; z-index: 2; }
+    .stats-band-label {
+      font-size: 11px; font-weight: 500; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--egg); opacity: .5; margin-bottom: 72px;
+    }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+    .stat-block {
+      padding: 40px 0; border-right: 1px solid rgba(255,255,251,.15);
+    }
+    .stat-block:last-child { border-right: none; }
+    .stat-block:not(:first-child) { padding-left: 52px; }
+    .stat-n {
+      font-family: var(--sans); font-size: clamp(52px, 5vw, 76px);
+      font-weight: 600; letter-spacing: -.03em; color: var(--egg); line-height: 1;
+    }
+    .stat-l {
+      font-size: 11px; font-weight: 400; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--egg); opacity: .45; margin-top: 10px;
+    }
+
+    /* ─── CTA ────────────────────────────────────────────── */
+    .about-cta {
+      padding: 130px 56px; background: var(--egg);
+      display: flex; flex-direction: column; align-items: flex-start; gap: 48px;
+      border-top: 1px solid rgba(5,5,5,.08);
+    }
+    .about-cta-hl {
+      font-family: var(--sans); font-size: clamp(48px, 7vw, 110px);
+      font-weight: 600; letter-spacing: -.03em; text-transform: uppercase;
+      line-height: .9; color: var(--black);
+    }
+    .about-cta-hl em {
+      font-family: var(--serif); font-style: italic;
+      font-weight: 700; text-transform: none; color: var(--green);
+    }
+    .btn-primary {
+      font-family: var(--sans); font-size: 12px; font-weight: 500;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--egg); background: var(--green);
+      padding: 17px 44px; text-decoration: none;
+      display: inline-block; transition: background .2s;
+    }
+    .btn-primary:hover { background: var(--black); }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      background: var(--black); padding: 56px;
+      display: flex; align-items: center; justify-content: space-between; gap: 32px;
+    }
+    .foot-logo { display: flex; align-items: center; text-decoration: none; }
+    .foot-tag { font-size: 11px; color: var(--egg); opacity: .2; }
+    .foot-links { display: flex; gap: 36px; list-style: none; }
+    .foot-links a { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--egg); text-decoration: none; opacity: .35; transition: opacity .2s; }
+    .foot-links a:hover { opacity: 1; }
+    .foot-copy { font-size: 11px; color: var(--egg); opacity: .2; }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(44px); transition: opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1); }
+    .reveal-left { opacity: 0; transform: translateX(-56px); transition: opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1); }
+    .reveal-right { opacity: 0; transform: translateX(56px); transition: opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1); }
+    .reveal-scale { opacity: 0; transform: scale(.93) translateY(24px); transition: opacity 1.1s cubic-bezier(.16,1,.3,1), transform 1.1s cubic-bezier(.16,1,.3,1); }
+    .reveal-clip { clip-path: inset(0 0 100% 0); transition: clip-path 1.2s cubic-bezier(.16,1,.3,1); }
+    .reveal.in, .reveal-left.in, .reveal-right.in, .reveal-scale.in { opacity: 1; transform: none; }
+    .reveal-clip.in { clip-path: inset(0 0 0% 0); }
+    .d1 { transition-delay: .1s; } .d2 { transition-delay: .22s; }
+    .d3 { transition-delay: .34s; } .d4 { transition-delay: .46s; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 960px) {
+      nav { padding: 20px 28px; }
+      .nav-links { display: none; }
+      .about-hero { padding: 0 28px 64px; }
+      .manifesto { padding: 80px 28px; grid-template-columns: 1fr; gap: 44px; }
+      .approach { padding: 80px 28px; }
+      .approach-grid { grid-template-columns: 1fr; }
+      .team { padding: 80px 28px; }
+      .team-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .stats-band { padding: 80px 28px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 0; }
+      .stat-block { padding: 32px 0; border-right: none; border-bottom: 1px solid rgba(255,255,251,.15); }
+      .stat-block:not(:first-child) { padding-left: 0; }
+      .about-cta { padding: 80px 28px; }
+      footer { padding: 40px 28px; flex-wrap: wrap; gap: 24px; }
+      .foot-tag { display: none; }
+    }
+    @media (max-width: 600px) {
+      .team-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── PAGE TRANSITION ───────────────────────────────── */
+    #page-transition {
+      position: fixed; inset: 0; z-index: 10000; background: var(--green);
+      transform: translateY(0); transition: transform .8s cubic-bezier(.76,0,.24,1);
+      pointer-events: all;
+    }
+    #page-transition.is-revealed { transform: translateY(-100%); pointer-events: none; }
+
+    /* ─── SCROLL PROGRESS ───────────────────────────────── */
+    #scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 9000; background: transparent; }
+    #scroll-progress-fill { height: 100%; background: var(--green); width: 0%; transition: width .1s linear; }
+  </style>
+</head>
+<body>
+
+<div id="page-transition"></div>
+<div id="scroll-progress"><div id="scroll-progress-fill"></div></div>
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+
+<!-- ── NAV ─────────────────────────────────────────── -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.png" alt="Centre House" style="height: 34px; display: block;">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Let's Talk</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────── -->
+<section class="about-hero grain grain-dark">
+  <div class="about-hero-bg"></div>
+  <div class="about-hero-eyebrow reveal">Sydney, AU &nbsp;·&nbsp; Est. 2021</div>
+  <h1 class="about-hero-hl reveal d1">
+    THE PEOPLE<br>
+    BEHIND <em>The Work.</em>
+  </h1>
+  <div class="about-hero-foot reveal d2">
+    <p class="about-hero-desc">
+      A tight-knit team of creatives, strategists and storytellers<br>who genuinely care about what they make.
+    </p>
+    <span class="about-hero-scroll">Scroll to explore ↓</span>
+  </div>
+</section>
+
+<!-- ── MANIFESTO ─────────────────────────────────────── -->
+<section class="manifesto">
+  <div class="reveal-left">
+    <p class="manifesto-quote">
+      We started Centre House because <em>great brands deserve great content</em> — and most weren't getting it.
+    </p>
+  </div>
+  <div class="manifesto-body reveal-right">
+    <div class="manifesto-label">Our Story</div>
+    <div class="manifesto-copy">
+      <p>Centre House was built in Sydney in 2021 with a simple idea: bring everything a brand needs under one roof. Strategy, content, photography, video, paid media — done by people who actually care about the outcome, not just the invoice.</p>
+      <p>We've grown from the ground up working with everyone from local hospitality groups and independent labels to NRL clubs and national brands. Every client, big or small, gets the same thing — our full attention, honest thinking, and work we're genuinely proud to put our name on.</p>
+      <p>We're not a revolving door of account managers and freelancers. We're a core team that gets deep into your brand, shows up on set, and stays in the trenches with you until the job is done right.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── VALUES TICKER ──────────────────────────────────── -->
+<div class="values-band">
+  <div class="values-track">
+    <!-- Set 1 -->
+    <div class="value-item"><span>Creativity</span><div class="value-dot"></div></div>
+    <div class="value-item"><span>Authenticity</span><div class="value-dot"></div></div>
+    <div class="value-item"><span>Results</span><div class="value-dot"></div></div>
+    <div class="value-item"><span>Strategy</span><div class="value-dot"></div></div>
+    <div class="value-item"><span>Craft</span><div class="value-dot"></div></div>
+    <div class="value-item"><span>Vision</span><div class="value-dot"></div></div>
+    <div class="value-item"><span>Ambition</span><div class="value-dot"></div></div>
+    <div class="value-item"><span>Honesty</span><div class="value-dot"></div></div>
+    <div class="value-item"><span>Energy</span><div class="value-dot"></div></div>
+    <div class="value-item"><span>Excellence</span><div class="value-dot"></div></div>
+    <!-- Set 2 (duplicate for seamless loop) -->
+    <div class="value-item"><span>Creativity</span><div class="value-dot"></div></div>
+    <div class="value-item"><span>Authenticity</span><div class="value-dot"></div></div>
+    <div class="value-item"><span>Results</span><div class="value-dot"></div></div>
+    <div class="value-item"><span>Strategy</span><div class="value-dot"></div></div>
+    <div class="value-item"><span>Craft</span><div class="value-dot"></div></div>
+    <div class="value-item"><span>Vision</span><div class="value-dot"></div></div>
+    <div class="value-item"><span>Ambition</span><div class="value-dot"></div></div>
+    <div class="value-item"><span>Honesty</span><div class="value-dot"></div></div>
+    <div class="value-item"><span>Energy</span><div class="value-dot"></div></div>
+    <div class="value-item"><span>Excellence</span><div class="value-dot"></div></div>
+  </div>
+</div>
+
+<!-- ── APPROACH ───────────────────────────────────────── -->
+<section class="approach grain grain-dark">
+  <div class="approach-head">
+    <div class="approach-label reveal">How We Work</div>
+    <h2 class="approach-title reveal d1">Our <em>Approach</em></h2>
+  </div>
+  <div class="approach-grid">
+    <div class="approach-card reveal-scale">
+      <div class="approach-num">01</div>
+      <div class="approach-card-title">We Listen First</div>
+      <p class="approach-card-desc">Every engagement starts with understanding your brand, your audience, and what success actually looks like for you. No templates, no assumptions.</p>
+    </div>
+    <div class="approach-card reveal-scale d2">
+      <div class="approach-num">02</div>
+      <div class="approach-card-title">We Build the Strategy</div>
+      <p class="approach-card-desc">Strategy before execution, always. We map out what we're going to make, why it'll work, and how we'll measure it — before a single camera is picked up.</p>
+    </div>
+    <div class="approach-card reveal-scale d3">
+      <div class="approach-num">03</div>
+      <div class="approach-card-title">We Show Up On Set</div>
+      <p class="approach-card-desc">We're hands-on. The people who planned your campaign are the same people on the shoot and in the edit. No handoffs, no lost context, no excuses.</p>
+    </div>
+    <div class="approach-card reveal-scale d1">
+      <div class="approach-num">04</div>
+      <div class="approach-card-title">We Deliver &amp; Optimise</div>
+      <p class="approach-card-desc">Launch is the beginning, not the end. We track performance, feed insights back into the creative, and keep pushing until the numbers move.</p>
+    </div>
+    <div class="approach-card reveal-scale d2">
+      <div class="approach-num">05</div>
+      <div class="approach-card-title">We Stay in the Trenches</div>
+      <p class="approach-card-desc">We work on retainer with most of our clients because the best results come from long-term relationships, not one-off projects.</p>
+    </div>
+    <div class="approach-card reveal-scale d3">
+      <div class="approach-num">06</div>
+      <div class="approach-card-title">We Tell the Truth</div>
+      <p class="approach-card-desc">If something isn't working, we'll say so. If we think there's a better way, we'll say that too. Honest advice, always — even when it's uncomfortable.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── TEAM ───────────────────────────────────────────── -->
+<section class="team">
+  <div class="team-head">
+    <div class="team-label reveal">The Team</div>
+    <h2 class="team-title reveal d1">The Crew Behind <em>Centre House</em></h2>
+  </div>
+  <div class="team-grid">
+
+    <div class="team-card">
+      <div class="team-img reveal-clip">
+        <!-- Replace with: <img src="images/team-sam.jpg" alt="Sam Rigney"> -->
+        <div class="team-img-ph">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Add Photo</span>
+        </div>
+      </div>
+      <div class="reveal d1">
+        <div class="team-card-tag">Founder</div>
+        <div class="team-card-name">Sam Rigney</div>
+        <div class="team-card-role">Creative Director &amp; Founder</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-img reveal-clip d1">
+        <!-- Replace with: <img src="images/team-member2.jpg" alt="Name"> -->
+        <div class="team-img-ph">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Add Photo</span>
+        </div>
+      </div>
+      <div class="reveal d2">
+        <!-- ── EDIT: Name and role ── -->
+        <div class="team-card-tag">Team</div>
+        <div class="team-card-name">Team Member</div>
+        <div class="team-card-role">Role Title</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-img reveal-clip d2">
+        <!-- Replace with: <img src="images/team-member3.jpg" alt="Name"> -->
+        <div class="team-img-ph">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Add Photo</span>
+        </div>
+      </div>
+      <div class="reveal d3">
+        <!-- ── EDIT: Name and role ── -->
+        <div class="team-card-tag">Team</div>
+        <div class="team-card-name">Team Member</div>
+        <div class="team-card-role">Role Title</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── STATS ──────────────────────────────────────────── -->
+<section class="stats-band grain grain-green">
+  <div class="stats-band-label reveal">Centre House by the Numbers</div>
+  <div class="stats-grid">
+    <div class="stat-block reveal">
+      <div class="stat-n" data-count="75" data-suffix="+">75+</div>
+      <div class="stat-l">Clients Served</div>
+    </div>
+    <div class="stat-block reveal d1">
+      <div class="stat-n" data-count="250" data-suffix="+">250+</div>
+      <div class="stat-l">Shoots</div>
+    </div>
+    <div class="stat-block reveal d2">
+      <div class="stat-n" data-count="20" data-suffix="M+">20M+</div>
+      <div class="stat-l">Views Generated</div>
+    </div>
+    <div class="stat-block reveal d3">
+      <div class="stat-n">360°</div>
+      <div class="stat-l">Full Service</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────────── -->
+<section class="about-cta">
+  <h2 class="about-cta-hl reveal">
+    READY TO<br>WORK <em>Together?</em>
+  </h2>
+  <a href="index.html#contact" class="btn-primary reveal d1">Start a Project &nbsp;→</a>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <a href="index.html" class="foot-logo">
+    <img src="images/logo.png" alt="Centre House" style="height: 28px; display: block; filter: brightness(0) invert(1);">
+  </a>
+  <span class="foot-tag">Creative &amp; Strategic Digital Media</span>
+  <ul class="foot-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#work">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <span class="foot-copy">© 2025 Centre House</span>
+</footer>
+
+<script>
+  /* ── Custom cursor ── */
+  const dot = document.getElementById('cur-dot'), ring = document.getElementById('cur-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px'; });
+  (function loop(){ rx+=(mx-rx)*.11; ry+=(my-ry)*.11; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(loop); })();
+  document.querySelectorAll('a,button').forEach(el => {
+    el.addEventListener('mouseenter', () => { dot.style.transform='translate(-50%,-50%) scale(2.5)'; ring.style.width='54px'; ring.style.height='54px'; ring.style.opacity='.35'; });
+    el.addEventListener('mouseleave', () => { dot.style.transform='translate(-50%,-50%) scale(1)'; ring.style.width='34px'; ring.style.height='34px'; ring.style.opacity='.55'; });
+  });
+
+  /* ── Sticky nav ── */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60), { passive: true });
+
+  /* ── Scroll reveal + stat counter ── */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        const num = e.target.querySelector('[data-count]');
+        if (num && !num.dataset.counted) {
+          num.dataset.counted = '1';
+          const target = +num.dataset.count, suffix = num.dataset.suffix || '', dur = 1400, start = performance.now();
+          (function tick(now) {
+            const p = Math.min((now-start)/dur,1), ease = 1-Math.pow(1-p,3);
+            num.textContent = Math.round(ease*target)+suffix;
+            if (p<1) requestAnimationFrame(tick);
+          })(start);
+        }
+      }
+    });
+  }, { threshold: .15 });
+
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-clip').forEach(el => obs.observe(el));
+
+  /* Trigger hero immediately */
+  setTimeout(() => {
+    document.querySelectorAll('.about-hero .reveal,.about-hero .reveal-left,.about-hero .reveal-right').forEach((el,i) => {
+      setTimeout(() => el.classList.add('in'), 150 + i*120);
+    });
+  }, 100);
+
+  /* ── Scroll progress ── */
+  const spFill = document.getElementById('scroll-progress-fill');
+  window.addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    spFill.style.width = (scrollY / max * 100) + '%';
+  }, { passive: true });
+
+  /* ── Page transitions ── */
+  (function(){
+    const pt = document.getElementById('page-transition'); if (!pt) return;
+    requestAnimationFrame(() => requestAnimationFrame(() => { pt.classList.add('is-revealed'); }));
+    document.querySelectorAll('a[href]').forEach(a => {
+      try {
+        const url = new URL(a.href, location.href);
+        if (url.hostname !== location.hostname) return;
+        if (url.hash && url.pathname === location.pathname) return;
+        if (!url.pathname.match(/\.(html)$/) && url.pathname !== '/') return;
+        a.addEventListener('click', e => {
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+          e.preventDefault(); const dest = a.href;
+          pt.style.transition = 'transform .65s cubic-bezier(.76,0,.24,1)';
+          pt.classList.remove('is-revealed');
+          setTimeout(() => { location.href = dest; }, 680);
+        });
+      } catch(_) {}
+    });
+  })();
+</script>
+
+</body>
+</html>
