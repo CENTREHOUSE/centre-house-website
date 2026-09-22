@@ -213,19 +213,17 @@
     /* ─── CLIENTS BAND ──────────────────────────────────── */
     .clients-band {
       display: flex; align-items: stretch;
-      border-top: 1px solid rgba(5,5,5,.1);
-      border-bottom: 1px solid rgba(5,5,5,.1);
-      background: var(--egg);
+      background: var(--green);
       overflow: hidden;
     }
     .clients-label {
       flex-shrink: 0;
       padding: 0 40px;
-      border-right: 1px solid rgba(5,5,5,.1);
+      border-right: 1px solid rgba(255,255,251,.15);
       display: flex; align-items: center;
       font-size: 10px; font-weight: 500;
       letter-spacing: .2em; text-transform: uppercase;
-      color: var(--black); opacity: .35;
+      color: var(--egg); opacity: .6;
       white-space: nowrap;
     }
     .clients-scroll { overflow: hidden; flex: 1; }
@@ -237,18 +235,17 @@
     .client-item {
       display: inline-flex; align-items: center;
       padding: 0 52px; height: 80px;
-      border-right: 1px solid rgba(5,5,5,.07);
+      border-right: 1px solid rgba(255,255,251,.1);
       text-decoration: none;
       transition: background .25s;
     }
-    .client-item:hover { background: var(--grey); }
-    /* ── Logo image (swap text for <img> when you have files) ── */
+    .client-item:hover { background: rgba(255,255,251,.08); }
     .client-item img {
       height: 22px; width: auto; display: block;
-      filter: grayscale(1); opacity: .45;
-      transition: filter .3s, opacity .3s;
+      filter: brightness(0) invert(1); opacity: .55;
+      transition: opacity .3s;
     }
-    .client-item:hover img { filter: grayscale(0); opacity: .8; }
+    .client-item:hover img { opacity: 1; }
     /* Text fallback shown when no <img> is present */
     .client-name {
       font-family: var(--sans);
