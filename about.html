@@ -7,6 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/shared.css">
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -301,6 +303,7 @@
 
     /* ─── RESPONSIVE ─────────────────────────────────────── */
     @media (max-width: 960px) {
+      .reveal-left, .reveal-right { transform: translateY(44px); }
       nav { padding: 20px 28px; }
       .nav-links { display: none; }
       .about-hero { padding: 0 28px 64px; }
@@ -332,6 +335,7 @@
     /* ─── SCROLL PROGRESS ───────────────────────────────── */
     #scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 9000; background: transparent; }
     #scroll-progress-fill { height: 100%; background: var(--green); width: 0%; transition: width .1s linear; }
+      #cur-dot, #cur-ring, #scroll-progress { display: none !important; }
   </style>
 </head>
 <body>
@@ -344,20 +348,30 @@
 <!-- ── NAV ─────────────────────────────────────────── -->
 <nav id="nav">
   <a href="index.html" class="nav-logo">
-    <img src="images/logo.png" alt="Centre House" style="height: 34px; display: block;">
+    <img src="images/chm-logo-horizontal-green.png" alt="Centre House" style="height: 34px; display: block;">
   </a>
   <ul class="nav-links">
-    <li><a href="index.html#services">Services</a></li>
+    <li class="has-drop"><a href="index.html#services">Services</a>
+      <div class="nav-drop"><ul><li><a href="performance-marketing.html">Performance Marketing &amp; Lead Gen</a></li><li><a href="social-media.html">Organic Social Media</a></li><li><a href="web-design.html">Website Design &amp; Development</a></li><li><a href="index.html#work">Content Creation</a></li></ul></div>
+    </li>
     <li><a href="index.html#work">Work</a></li>
     <li><a href="about.html" class="active">About</a></li>
-    <li><a href="index.html#contact" class="nav-cta">Let's Talk</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Free Audit</a></li>
   </ul>
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
 </nav>
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mm-label">Services</div>
+  <a class="mm-sub" href="performance-marketing.html">Performance Marketing &amp; Lead Gen</a><a class="mm-sub" href="social-media.html">Organic Social Media</a><a class="mm-sub" href="web-design.html">Website Design &amp; Development</a><a class="mm-sub" href="index.html#work">Content Creation</a>
+  <div class="mm-label">Centre House</div>
+  <a href="index.html#work">Work</a>
+  <a href="about.html">About</a>
+  <a class="mm-cta" href="index.html#contact">Get a complimentary audit</a>
+</div>
 
 <!-- ── HERO ─────────────────────────────────────────── -->
 <section class="about-hero grain grain-dark">
   <div class="about-hero-bg"></div>
-  <div class="about-hero-eyebrow reveal">Sydney, AU &nbsp;·&nbsp; Est. 2021</div>
   <h1 class="about-hero-hl reveal d1">
     THE PEOPLE<br>
     BEHIND <em>The Work.</em>
@@ -547,7 +561,7 @@
 <!-- ── FOOTER ─────────────────────────────────────────── -->
 <footer>
   <a href="index.html" class="foot-logo">
-    <img src="images/logo.png" alt="Centre House" style="height: 28px; display: block; filter: brightness(0) invert(1);">
+    <img src="images/chm-logo-horizontal-green.png" alt="Centre House" style="height: 28px; display: block; filter: brightness(0) invert(1);">
   </a>
   <span class="foot-tag">Creative &amp; Strategic Digital Media</span>
   <ul class="foot-links">
@@ -631,5 +645,6 @@
   })();
 </script>
 
+<script src="js/shared.js"></script>
 </body>
 </html>

@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
 
+  <link rel="stylesheet" href="css/shared.css">
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -266,41 +268,6 @@
     .section-title em {
       font-family: var(--serif); font-style: italic;
       font-weight: 700; text-transform: none; color: var(--green);
-    }
-
-    /* ─── SERVICES ───────────────────────────────────────── */
-    .services-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
-    }
-    .svc {
-      padding: 52px 0; border-bottom: 1px solid rgba(5,5,5,.1);
-      display: grid; grid-template-columns: 72px 1fr;
-      gap: 20px; align-items: start;
-      padding-right: 52px;
-      transition: background .2s;
-    }
-    .svc:nth-child(even) {
-      padding-left: 52px; padding-right: 0;
-      border-left: 1px solid rgba(5,5,5,.1);
-    }
-    .svc:nth-last-child(-n+2) { border-bottom: none; }
-    .svc-icon {
-      padding-top: 6px;
-      display: flex; align-items: flex-start;
-    }
-    .svc-icon svg { width: 28px; height: 28px; opacity: .3; transition: opacity .3s; flex-shrink: 0; }
-    .svc:hover .svc-icon svg { opacity: .75; }
-    .svc-name {
-      font-size: 26px; font-weight: 600;
-      letter-spacing: -.01em; text-transform: uppercase;
-      color: var(--black); line-height: 1.1;
-      margin-bottom: 14px;
-      transition: color .2s;
-    }
-    .svc:hover .svc-name { color: var(--green); }
-    .svc-desc {
-      font-size: 14px; font-weight: 400;
-      line-height: 1.7; color: var(--black); opacity: .5;
     }
 
     /* ─── WORK ───────────────────────────────────────────── */
@@ -577,7 +544,7 @@
       font-family: var(--serif); font-style: italic;
       font-size: 14px; color: var(--egg); opacity: .3;
     }
-    .foot-links { display: flex; gap: 32px; list-style: none; }
+    .foot-links { display: flex; flex-wrap: wrap; gap: 14px 32px; list-style: none; }
     .foot-links a {
       font-size: 11px; font-weight: 400;
       letter-spacing: .1em; text-transform: uppercase;
@@ -803,15 +770,13 @@
       .hero-scroll { display: none; }
       .section-wrap { padding: 80px 28px; }
       .section-head { flex-direction: column; gap: 12px; }
-      .services-grid { grid-template-columns: 1fr; }
-      .svc:nth-child(even) { padding-left: 0; border-left: none; }
-      .svc { padding-right: 0; }
       .work-wrap { padding: 80px 28px 0; }
       .projects-row-a, .projects-row-b, .projects-row-c { grid-template-columns: 1fr; }
       .proj-card.tall, .proj-card.short { height: 72vw; }
       .about { padding: 80px 28px; }
       .about-foot { flex-direction: column; align-items: flex-start; gap: 32px; }
-      .stats { gap: 40px; }
+      .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 24px; }
+      .reveal-left, .reveal-right { transform: translateY(44px); }
       .contact { padding: 80px 28px; }
       .contact-inner { grid-template-columns: 1fr; gap: 40px; }
       footer { padding: 40px 28px; flex-wrap: wrap; gap: 24px; }
@@ -835,16 +800,27 @@
 
 <!-- ── NAV ─────────────────────────────────────────── -->
 <nav id="nav">
-  <a href="#" class="nav-logo">
+  <a href="index.html" class="nav-logo">
     <img src="images/chm-logo-horizontal-green.png" alt="Centre House" style="height: 34px; display: block;">
   </a>
   <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
+    <li class="has-drop"><a href="#services">Services</a>
+      <div class="nav-drop"><ul><li><a href="performance-marketing.html">Performance Marketing &amp; Lead Gen</a></li><li><a href="social-media.html">Organic Social Media</a></li><li><a href="web-design.html">Website Design &amp; Development</a></li><li><a href="#work">Content Creation</a></li></ul></div>
+    </li>
     <li><a href="#work">Work</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+    <li><a href="#contact" class="nav-cta">Free Audit</a></li>
   </ul>
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
 </nav>
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mm-label">Services</div>
+  <a class="mm-sub" href="performance-marketing.html">Performance Marketing &amp; Lead Gen</a><a class="mm-sub" href="social-media.html">Organic Social Media</a><a class="mm-sub" href="web-design.html">Website Design &amp; Development</a><a class="mm-sub" href="#work">Content Creation</a>
+  <div class="mm-label">Centre House</div>
+  <a href="#work">Work</a>
+  <a href="about.html">About</a>
+  <a class="mm-cta" href="#contact">Get a complimentary audit</a>
+</div>
 
 <!-- ── HERO ────────────────────────────────────────── -->
 <section class="hero grain">
@@ -866,7 +842,7 @@
     </p>
     <div class="hero-actions">
       <a href="#work" class="btn-primary">View Our Work</a>
-      <a href="#contact" class="btn-ghost">Start a Project &nbsp;→</a>
+      <a href="#contact" class="btn-ghost">Get a Complimentary Audit &nbsp;→</a>
     </div>
   </div>
 </section>
@@ -1013,74 +989,59 @@
     <span class="section-label">What We Do</span>
     <h2 class="section-title">Our <em>Services</em></h2>
   </div>
-  <div class="services-grid">
-
-    <div class="svc reveal-left">
-      <div class="svc-icon">
-        <!-- Camera -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-      </div>
+  <div class="pillars">
+    <a class="pillar reveal" href="performance-marketing.html">
+      <span class="pillar-n">01</span>
       <div>
-        <div class="svc-name">Content Creation</div>
-        <p class="svc-desc">Photography, videography, and creative direction that stops the scroll. Premium content built for the platforms your audience actually lives on.</p>
+        <h3 class="pillar-name">Performance Marketing<br>&amp; Lead Generation</h3>
+        <p class="pillar-desc">Meta and Google campaigns that turn spend into leads, bookings and sales, with creative, landing pages and tracking handled by one team.</p>
+        <ul class="pillar-tags"><li>Meta Ads</li><li>Google Ads</li><li>Lead Generation</li><li>Email Marketing</li></ul>
       </div>
-    </div>
-
-    <div class="svc reveal-right d1">
-      <div class="svc-icon">
-        <!-- Instagram -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
-      </div>
+      <span class="pillar-go">Explore &nbsp;→</span>
+    </a>
+    <a class="pillar reveal" href="social-media.html">
+      <span class="pillar-n">02</span>
       <div>
-        <div class="svc-name">Social Media</div>
-        <p class="svc-desc">End-to-end social management: strategy, content calendar, community, and reporting. A consistent, compelling presence across every platform.</p>
+        <h3 class="pillar-name">Organic Social Media</h3>
+        <p class="pillar-desc">Strategy, monthly shoots, short-form video, posting and community management, handled end to end.</p>
+        <ul class="pillar-tags"><li>Strategy</li><li>Content Calendars</li><li>Reels &amp; Short-Form</li><li>Community Management</li></ul>
       </div>
-    </div>
-
-    <div class="svc reveal-left d1">
-      <div class="svc-icon">
-        <!-- Meta logo -->
-        <svg viewBox="0 0 36 36" fill="currentColor" stroke="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.93 23.16C3.93 24.45 4.22 25.45 4.72 26.1C5.22 26.75 5.94 27.07 6.85 27.07C7.82 27.07 8.69 26.76 9.65 25.71C10.59 24.67 11.59 22.92 12.71 20.27L14.83 15.28C16.41 11.49 18.24 8.75 20.31 7.06C22.37 5.38 24.75 4.5 27.44 4.5C29.36 4.5 31.03 4.98 32.44 5.96C33.84 6.93 34.92 8.28 35.66 10C36.4 11.71 36.77 13.66 36.77 15.84C36.77 18.19 36.31 20.27 35.41 22.09C34.51 23.9 33.27 25.32 31.71 26.34L31.7 26.35C30.13 27.36 28.36 27.87 26.44 27.87C24.44 27.87 22.65 27.3 21.09 26.17C19.53 25.04 18.19 23.3 17.07 20.97L16.15 19.08L14.05 23.68C13.01 25.97 11.87 27.66 10.63 28.72C9.38 29.79 7.95 30.32 6.34 30.32C4.6 30.32 3.11 29.69 1.96 28.44C0.81 27.2 0.23 25.42 0.23 23.29C0.23 21.04 0.87 19.11 2.16 17.52L5.01 19.57C4.29 20.62 3.93 21.82 3.93 23.16ZM19.66 17.53L20.77 19.67C21.62 21.26 22.52 22.41 23.46 23.11C24.4 23.81 25.43 24.16 26.54 24.16C28.05 24.16 29.37 23.54 30.48 22.31C31.6 21.08 32.16 19.49 32.16 17.54C32.16 15.63 31.66 14.1 30.66 12.95C29.66 11.81 28.49 11.24 27.14 11.24C26.01 11.24 24.97 11.6 24.02 12.33C23.08 13.06 22.12 14.4 21.16 16.35L19.66 17.53Z"/></svg>
-      </div>
+      <span class="pillar-go">Explore &nbsp;→</span>
+    </a>
+    <a class="pillar reveal" href="web-design.html">
+      <span class="pillar-n">03</span>
       <div>
-        <div class="svc-name">Meta Ads</div>
-        <p class="svc-desc">Precision-targeted campaigns across Facebook and Instagram. We build, manage, and optimise paid social strategies that convert attention into measurable action.</p>
+        <h3 class="pillar-name">Website Design<br>&amp; Development</h3>
+        <p class="pillar-desc">Sites designed, written, shot and built in-house: fast on a phone and set up to win the enquiry.</p>
+        <ul class="pillar-tags"><li>Design</li><li>Copywriting</li><li>Development</li><li>SEO</li></ul>
       </div>
-    </div>
-
-    <div class="svc reveal-right d2">
-      <div class="svc-icon">
-        <!-- Google G -->
-        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21.8 12.2c0-.7-.06-1.37-.17-2H12v3.79h5.5a4.7 4.7 0 0 1-2.04 3.08v2.56h3.3c1.93-1.78 3.04-4.4 3.04-7.43z" fill="#4285F4"/><path d="M12 22c2.76 0 5.08-.92 6.77-2.48l-3.3-2.56c-.91.61-2.08.97-3.47.97-2.67 0-4.93-1.8-5.73-4.22H2.87v2.64A10 10 0 0 0 12 22z" fill="#34A853"/><path d="M6.27 13.71A6.01 6.01 0 0 1 5.96 12c0-.59.1-1.17.27-1.71V7.65H2.87A10 10 0 0 0 2 12c0 1.61.39 3.13 1.07 4.48l3.2-2.77z" fill="#FBBC05"/><path d="M12 5.8c1.5 0 2.85.52 3.91 1.53l2.93-2.93C17.07 2.81 14.75 2 12 2A10 10 0 0 0 2.87 7.65l3.4 2.64C7.07 7.6 9.33 5.8 12 5.8z" fill="#EA4335"/></svg>
-      </div>
+      <span class="pillar-go">Explore &nbsp;→</span>
+    </a>
+    <a class="pillar reveal" href="#work">
+      <span class="pillar-n">04</span>
       <div>
-        <div class="svc-name">Google Ads</div>
-        <p class="svc-desc">Search, display, and Performance Max campaigns engineered for ROI. We put your brand in front of the right people at exactly the right moment.</p>
+        <h3 class="pillar-name">Content Creation</h3>
+        <p class="pillar-desc">Photography, videography and creative direction that stops the scroll, built for the platforms your audience lives on.</p>
+        <ul class="pillar-tags"><li>Photography</li><li>Videography</li><li>Graphic Design</li><li>Creative Direction</li></ul>
       </div>
-    </div>
+      <span class="pillar-go">See the work &nbsp;→</span>
+    </a>
+  </div>
+</section>
 
-    <div class="svc reveal-left d2">
-      <div class="svc-icon">
-        <!-- Paintbrush -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18.37 2.63 14 7l-1.59-1.59a2 2 0 0 0-2.82 0L8 7l9 9 1.59-1.59a2 2 0 0 0 0-2.82L17 10l4.37-4.37a2.12 2.12 0 0 0-3-3z"/><path d="M9 8c-2 2.5-2 5-2 6a3 3 0 1 0 6 0c0-1-.5-3.5-2-6"/><path d="M9.5 17.5c0 1-.5 1.5-1.5 2"/></svg>
-      </div>
-      <div>
-        <div class="svc-name">Graphic Design</div>
-        <p class="svc-desc">From campaign assets to brand collateral — we design with intention. Every piece of work is crafted to communicate clearly and look exceptional.</p>
-      </div>
-    </div>
-
-    <div class="svc reveal-right d3">
-      <div class="svc-icon">
-        <!-- Envelope -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
-      </div>
-      <div>
-        <div class="svc-name">Email Marketing</div>
-        <p class="svc-desc">Campaigns and automations that nurture, convert, and retain. We craft email strategies that land in the inbox and drive real commercial results.</p>
-      </div>
-    </div>
-
+<!-- ── INDUSTRIES ───────────────────────────────────── -->
+<section class="section-wrap" id="industries" style="padding-top:0">
+  <div class="section-head reveal">
+    <span class="section-label">Industries</span>
+    <h2 class="section-title">Sectors We <em>Know</em></h2>
+  </div>
+  <div class="industries">
+    <div class="industry reveal"><h3 class="industry-name">Hospitality</h3><p class="industry-clients">Esteban, Saint Peter, Elliott's, Tequila Mockingbird, Atticus Hospitality</p></div>
+    <div class="industry reveal"><h3 class="industry-name">Sport</h3><p class="industry-clients">Parramatta Eels, NFL Australia &amp; New Zealand, Hello Sport, Rugby League Guru</p></div>
+    <div class="industry reveal"><h3 class="industry-name">Fashion &amp; Lifestyle</h3><p class="industry-clients">Earls Collection, Budgy Smuggler, Zjoosh</p></div>
+    <div class="industry reveal"><h3 class="industry-name">Property &amp; Finance</h3><p class="industry-clients">McGrath, Multipart Property, Indigenous Wealth</p></div>
+    <div class="industry reveal"><h3 class="industry-name">Food &amp; Drink Brands</h3><p class="industry-clients">CUB, Suntory, Rebel Donuts, Garlo's</p></div>
+    <div class="industry reveal"><h3 class="industry-name">Education &amp; Community</h3><p class="industry-clients">UNSW Sydney, Old Ignatians' Union</p></div>
   </div>
 </section>
 
@@ -1277,51 +1238,50 @@
 <!-- ── CONTACT ───────────────────────────────────────── -->
 <section class="contact" id="contact">
   <div class="contact-inner">
-    <div class="reveal-left">
-      <h2 class="contact-hl">
-        LET'S<br>
-        BUILD<br>
-        SOMETHING<br>
-        <em>Together.</em>
-      </h2>
-      <p class="contact-desc">
-        Ready to take your brand to the next level? Tell us about your project and we'll get back to you within 24 hours.
-      </p>
+    <div class="reveal">
+      <div class="section-label">Complimentary Audit</div>
+      <h2 class="contact-hl audit-hl">YOUR SOCIALS,<br>WEBSITE &amp; ADS,<br><em>Audited. On Us.</em></h2>
+      <p class="contact-desc">Tell us where to look and we'll review your socials, website and paid media, then walk you through what's working, what's leaking and what we'd do first. Complimentary, with no obligation.</p>
+      <ul class="audit-points">
+        <li><b>Socials</b><span>Content, consistency, engagement and how you stack up against competitors.</span></li>
+        <li><b>Website</b><span>Speed, mobile experience, messaging and how easy it is to enquire.</span></li>
+        <li><b>Paid</b><span>Account structure, targeting, creative, tracking and wasted spend.</span></li>
+      </ul>
     </div>
-    <div class="reveal-right d1">
-      <form class="form">
-        <div class="field">
-          <label>Your Name</label>
-          <input type="text" placeholder="First &amp; Last Name">
+    <form class="form reveal d1" name="audit" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="audit">
+      <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <div class="field">
+        <label for="f-name">Your Name</label>
+        <input id="f-name" name="name" type="text" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="f-email">Email Address</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label for="f-phone">Phone</label>
+        <input id="f-phone" name="phone" type="tel" autocomplete="tel">
+      </div>
+      <div class="field">
+        <label for="f-biz">Business, Website or Instagram Handle</label>
+        <input id="f-biz" name="business" type="text" required>
+      </div>
+      <fieldset class="field">
+        <legend>What Should We Audit?</legend>
+        <div class="audit-opts">
+          <label><input type="checkbox" name="audit" value="Socials" checked><span>SOCIALS</span></label>
+          <label><input type="checkbox" name="audit" value="Website" checked><span>WEBSITE</span></label>
+          <label><input type="checkbox" name="audit" value="Paid ads" checked><span>PAID ADS</span></label>
         </div>
-        <div class="field">
-          <label>Email Address</label>
-          <input type="email" placeholder="hello@yourbrand.com">
-        </div>
-        <div class="field">
-          <label>Phone</label>
-          <input type="tel" placeholder="Optional">
-        </div>
-        <div class="field">
-          <label>Service You're After</label>
-          <select>
-            <option value="" disabled selected>Select a service…</option>
-            <option>Meta Ads</option>
-            <option>Google Ads</option>
-            <option>Content Creation</option>
-            <option>Graphic Design</option>
-            <option>Branding</option>
-            <option>Social Media</option>
-            <option>Full-Service Package</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Tell Us About Your Project</label>
-          <textarea placeholder="Give us the brief…"></textarea>
-        </div>
-        <button type="submit" class="form-submit">Send Enquiry &nbsp;→</button>
-      </form>
-    </div>
+      </fieldset>
+      <div class="field">
+        <label for="f-msg">Anything We Should Know?</label>
+        <textarea id="f-msg" name="message"></textarea>
+      </div>
+      <button type="submit" class="form-submit">Request My Audit &nbsp;→</button>
+      <p class="form-status" role="status"></p>
+    </form>
   </div>
 </section>
 
@@ -1332,13 +1292,15 @@
   </a>
   <span class="foot-tag">Creative &amp; Strategic Digital Media</span>
   <ul class="foot-links">
+    <li><a href="performance-marketing.html">Performance</a></li>
+    <li><a href="social-media.html">Social</a></li>
+    <li><a href="web-design.html">Websites</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="#contact">Contact</a></li>
     <li><a href="https://www.instagram.com/centrehousemedia/" target="_blank" rel="noopener">Instagram</a></li>
     <li><a href="https://www.facebook.com/centrehousemedia/" target="_blank" rel="noopener">Facebook</a></li>
     <li><a href="https://au.linkedin.com/company/centrehousemedia" target="_blank" rel="noopener">LinkedIn</a></li>
   </ul>
-  <span class="foot-copy">© 2025 Centre House</span>
+  <span class="foot-copy">© 2026 Centre House</span>
 </footer>
 
 <script>
@@ -1588,6 +1550,6 @@
   })();
 
 </script>
-
+<script src="js/shared.js"></script>
 </body>
 </html>
