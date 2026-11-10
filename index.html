@@ -639,43 +639,82 @@
     }
 
     /* ─── TESTIMONIALS ───────────────────────────────────── */
-    .testimonials { padding: 120px 56px; background: var(--black); }
-    .testimonials .section-head { margin-bottom: 72px; }
+    .testimonials { padding: 130px 56px; background: var(--black); }
     .testimonials .section-label { color: var(--egg); opacity: .35; }
     .testimonials .section-title { color: var(--egg); }
     .testimonials .section-title em { color: var(--green); }
-    .testi-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 2px;
+    .testi-body {
+      display: grid; grid-template-columns: 120px minmax(0, 1fr);
+      align-items: start;
     }
-    .testi-card {
-      background: rgba(255,255,251,.04);
-      border: 1px solid rgba(255,255,251,.08);
-      padding: 52px 44px;
-      display: flex; flex-direction: column;
-      justify-content: space-between; gap: 40px;
+    .testi-mark {
+      font-family: var(--serif); font-size: 168px; line-height: .78;
+      color: var(--green);
+    }
+    .testi-slides { display: grid; }
+    .testi-slide {
+      grid-area: 1 / 1;
+      opacity: 0; visibility: hidden;
+      transition: opacity .45s ease, visibility .45s;
+    }
+    .testi-slide.is-active { opacity: 1; visibility: visible; }
+    .testi-quote {
+      font-family: var(--serif); font-style: italic; font-weight: 400;
+      font-size: clamp(24px, 2.7vw, 42px); line-height: 1.32;
+      letter-spacing: -.01em; color: var(--egg);
+      max-width: 1040px;
+    }
+    .testi-quote .w {
+      display: inline-block;
+      opacity: 0; transform: translateY(.5em); filter: blur(6px);
+      transition: opacity .6s ease, transform .8s cubic-bezier(.16,1,.3,1), filter .6s ease;
+      transition-delay: calc(var(--d) * 18ms);
+    }
+    .is-active .testi-quote .w { opacity: 1; transform: none; filter: none; }
+    .testi-by {
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      margin-top: 44px;
+      opacity: 0; transform: translateY(12px);
+      transition: opacity .6s ease .35s, transform .7s cubic-bezier(.16,1,.3,1) .35s;
+    }
+    .is-active .testi-by { opacity: 1; transform: none; }
+    .testi-line { width: 36px; height: 1px; background: var(--green); }
+    .testi-name { font-size: 14px; font-weight: 600; letter-spacing: .04em; color: var(--egg); }
+    .testi-role {
+      font-size: 11px; font-weight: 500; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--egg); opacity: .4;
+    }
+    .testi-tabs {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      margin-top: 88px;
+      border-top: 1px solid rgba(255,255,251,.14);
+    }
+    .testi-tab {
+      position: relative; height: 120px;
+      display: flex; align-items: center; justify-content: center;
+      background: none; border: 0; cursor: pointer;
       transition: background .3s;
     }
-    .testi-card:hover { background: rgba(255,255,251,.07); }
-    .testi-mark {
-      font-family: var(--serif); font-size: 64px;
-      line-height: .6; color: var(--green); opacity: .5;
+    .testi-tab + .testi-tab { border-left: 1px solid rgba(255,255,251,.08); }
+    .testi-tab:hover { background: rgba(255,255,251,.03); }
+    .testi-tab img {
+      width: calc(var(--lw) * 1px); max-width: 78%; height: auto;
+      filter: brightness(0) invert(1); opacity: .28;
+      transition: opacity .35s ease, transform .5s cubic-bezier(.16,1,.3,1);
     }
-    .testi-quote {
-      font-family: var(--serif); font-style: italic;
-      font-size: clamp(17px, 1.5vw, 22px);
-      line-height: 1.55; color: var(--egg); opacity: .85;
-      flex: 1;
+    .testi-tab:hover img { opacity: .6; }
+    .testi-tab.is-active img { opacity: 1; transform: scale(1.08); }
+    .testi-tab:focus-visible { outline: 1px solid var(--green); outline-offset: -1px; }
+    .testi-progress {
+      position: absolute; top: -1px; left: 0; right: 0; height: 2px;
+      background: var(--green);
+      transform: scaleX(0); transform-origin: left;
     }
-    .testi-footer { border-top: 1px solid rgba(255,255,251,.1); padding-top: 28px; }
-    .testi-name {
-      font-size: 13px; font-weight: 600;
-      letter-spacing: .05em; color: var(--egg);
-    }
-    .testi-role {
-      font-size: 11px; font-weight: 400;
-      letter-spacing: .12em; text-transform: uppercase;
-      color: var(--egg); opacity: .3; margin-top: 5px;
+    .testi-tab.is-active .testi-progress { animation: testi-fill var(--dur, 9s) linear forwards; }
+    .testi.is-paused .testi-progress { animation-play-state: paused !important; }
+    @keyframes testi-fill { to { transform: scaleX(1); } }
+    @media (prefers-reduced-motion: reduce) {
+      .testi-quote .w, .testi-by { transition: none; opacity: 1; transform: none; filter: none; }
     }
 
     /* ─── WORD MAGNIFY ───────────────────────────────────── */
@@ -778,7 +817,13 @@
       footer { padding: 40px 28px; flex-wrap: wrap; gap: 24px; }
       .foot-tag { display: none; }
       .testimonials { padding: 80px 28px; }
-      .testi-grid { grid-template-columns: 1fr; }
+      .testi-body { grid-template-columns: 1fr; }
+      .testi-mark { font-size: 110px; height: 64px; }
+      .testi-tabs { grid-template-columns: repeat(2, 1fr); margin-top: 56px; }
+      .testi-tab { height: 92px; }
+      .testi-tab:nth-child(3) { border-left: 0; }
+      .testi-tab:nth-child(n+3) { border-top: 1px solid rgba(255,255,251,.08); }
+      .testi-tab img { width: calc(var(--lw) * .78px); }
       .hero { padding: 0 28px 64px; }
     }
   </style>
@@ -1045,52 +1090,62 @@
     <span class="section-label">Client Words</span>
     <h2 class="section-title">Don't Take Our <em>Word For It</em></h2>
   </div>
-  <div class="testi-grid">
-
-    <div class="testi-card reveal-scale">
-      <div>
-        <div class="testi-mark">"</div>
-        <p class="testi-quote">Extremely talented media company, so easy to deal with and super efficient with turning around my content. Great crew.</p>
-      </div>
-      <div class="testi-footer">
-        <div class="testi-name">Lewi Brown</div>
-        <div class="testi-role">Founder &amp; Creative Director, Earl's Collection</div>
-      </div>
-    </div>
-
-    <div class="testi-card reveal-scale d2">
-      <div>
-        <div class="testi-mark">"</div>
-        <p class="testi-quote">Centre House is on a weekly retainer and I couldn't think more highly of Sam and his company. They are very hands-on and regularly onsite in our venues — part of the team. The camera skills are essential for hospo, and we are really happy with their performance.</p>
-      </div>
-      <div class="testi-footer">
-        <div class="testi-name">Michael Fegent</div>
-        <div class="testi-role">Owner, Atticus Hospitality</div>
-      </div>
-    </div>
-
-    <div class="testi-card reveal-scale d3">
-      <div>
-        <div class="testi-mark">"</div>
-        <p class="testi-quote">Sam is the best creative I've worked with. I've spent hundreds of thousands on marketing companies and content gurus — he's not your pay-per-click shit talker, he's the creative brain you need to articulate your vision and bring your thing to life. Many more years to come.</p>
-      </div>
-      <div class="testi-footer">
-        <div class="testi-name">Bradley Gimbert</div>
-        <div class="testi-role">Managing Director, Indigenous Wealth</div>
-      </div>
-    </div>
-
-    <div class="testi-card reveal-scale d4">
-      <div>
-        <div class="testi-mark">"</div>
-        <p class="testi-quote">Worked with Sam and the team for the first time as a last minute addition. They quickly have become my go to creative agency. Sam covers everything from ideation, content direction, storyboarding, on set management, film and video. He's not delivered 10+ projects for us and has not dropped the ball once.</p>
-      </div>
-      <div class="testi-footer">
-        <div class="testi-name">Phil Chester</div>
-        <div class="testi-role">Head of Marketing, Budgy Smuggler</div>
+  <div class="testi reveal">
+    <div class="testi-body">
+      <div class="testi-mark" aria-hidden="true">&ldquo;</div>
+      <div class="testi-slides">
+      <figure class="testi-slide is-active" id="testi-0" role="tabpanel">
+        <blockquote class="testi-quote">Extremely talented media company, so easy to deal with and super efficient with turning around my content. Great crew.</blockquote>
+        <figcaption class="testi-by">
+          <span class="testi-line"></span>
+          <span class="testi-name">Lewi Brown</span>
+          <span class="testi-role">Founder &amp; Creative Director, Earl's Collection</span>
+        </figcaption>
+      </figure>
+      <figure class="testi-slide" id="testi-1" role="tabpanel">
+        <blockquote class="testi-quote">Centre House is on a weekly retainer and I couldn't think more highly of Sam and his company. They are very hands-on and regularly onsite in our venues — part of the team. The camera skills are essential for hospo, and we are really happy with their performance.</blockquote>
+        <figcaption class="testi-by">
+          <span class="testi-line"></span>
+          <span class="testi-name">Michael Fegent</span>
+          <span class="testi-role">Owner, Atticus Hospitality</span>
+        </figcaption>
+      </figure>
+      <figure class="testi-slide" id="testi-2" role="tabpanel">
+        <blockquote class="testi-quote">Sam is the best creative I've worked with. I've spent hundreds of thousands on marketing companies and content gurus — he's not your pay-per-click shit talker, he's the creative brain you need to articulate your vision and bring your thing to life. Many more years to come.</blockquote>
+        <figcaption class="testi-by">
+          <span class="testi-line"></span>
+          <span class="testi-name">Bradley Gimbert</span>
+          <span class="testi-role">Managing Director, Indigenous Wealth</span>
+        </figcaption>
+      </figure>
+      <figure class="testi-slide" id="testi-3" role="tabpanel">
+        <blockquote class="testi-quote">Worked with Sam and the team for the first time as a last minute addition. They quickly have become my go to creative agency. Sam covers everything from ideation, content direction, storyboarding, on set management, film and video. He's not delivered 10+ projects for us and has not dropped the ball once.</blockquote>
+        <figcaption class="testi-by">
+          <span class="testi-line"></span>
+          <span class="testi-name">Phil Chester</span>
+          <span class="testi-role">Head of Marketing, Budgy Smuggler</span>
+        </figcaption>
+      </figure>
       </div>
     </div>
-
+    <div class="testi-tabs" role="tablist" aria-label="Client testimonials">
+      <button class="testi-tab is-active" role="tab" aria-selected="true" aria-controls="testi-0">
+        <img src="images/clients/earls.png" alt="Earl's Collection" style="--lw:129">
+        <span class="testi-progress"></span>
+      </button>
+      <button class="testi-tab" role="tab" aria-selected="false" aria-controls="testi-1">
+        <img src="images/clients/atticus-knockout.png" alt="Atticus Hospitality" style="--lw:132">
+        <span class="testi-progress"></span>
+      </button>
+      <button class="testi-tab" role="tab" aria-selected="false" aria-controls="testi-2">
+        <img src="images/clients/indigenous-wealth.png" alt="Indigenous Wealth" style="--lw:139">
+        <span class="testi-progress"></span>
+      </button>
+      <button class="testi-tab" role="tab" aria-selected="false" aria-controls="testi-3">
+        <img src="images/clients/budgy-smuggler.png" alt="Budgy Smuggler" style="--lw:106">
+        <span class="testi-progress"></span>
+      </button>
+    </div>
   </div>
 </section>
 
@@ -1481,6 +1536,55 @@
     col.addEventListener('mouseleave', () => {
       logos.forEach(img => { img.style.removeProperty('--m'); img.style.zIndex = ''; });
     });
+  })();
+
+  /* ── Testimonials: auto-advancing quotes with logo tabs ── */
+  (function(){
+    const root = document.querySelector('.testi');
+    if (!root) return;
+    const slides = [...root.querySelectorAll('.testi-slide')];
+    const tabs = [...root.querySelectorAll('.testi-tab')];
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    slides.forEach(slide => {
+      const q = slide.querySelector('.testi-quote');
+      const words = q.textContent.trim().split(/\s+/);
+      q.textContent = '';
+      words.forEach((w, i) => {
+        const sp = document.createElement('span');
+        sp.className = 'w'; sp.style.setProperty('--d', i); sp.textContent = w;
+        q.append(sp, ' ');
+      });
+      slide.dataset.dur = Math.max(7, Math.round(words.length * .3));
+    });
+    let cur = 0;
+    function go(i){
+      slides[cur].classList.remove('is-active');
+      tabs[cur].classList.remove('is-active');
+      tabs[cur].setAttribute('aria-selected', 'false');
+      cur = (i + slides.length) % slides.length;
+      root.style.setProperty('--dur', slides[cur].dataset.dur + 's');
+      void slides[cur].offsetWidth;
+      slides[cur].classList.add('is-active');
+      tabs[cur].classList.add('is-active');
+      tabs[cur].setAttribute('aria-selected', 'true');
+    }
+    slides[0].classList.remove('is-active');
+    tabs[0].classList.remove('is-active');
+    root.classList.add('is-paused');
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => { if (i !== cur || !slides[cur].classList.contains('is-active')) go(i); });
+      t.querySelector('.testi-progress').addEventListener('animationend', () => { if (i === cur) go(cur + 1); });
+    });
+    let visible = false, hovering = false, started = false;
+    const sync = () => root.classList.toggle('is-paused', reduce || !visible || hovering);
+    const body = root.querySelector('.testi-body');
+    body.addEventListener('mouseenter', () => { hovering = true; sync(); });
+    body.addEventListener('mouseleave', () => { hovering = false; sync(); });
+    new IntersectionObserver(es => {
+      visible = es[0].isIntersecting;
+      if (visible && !started) { started = true; go(0); }
+      sync();
+    }, { threshold: .35 }).observe(root);
   })();
 
 </script>
