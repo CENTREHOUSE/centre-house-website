@@ -594,38 +594,26 @@
       padding: 130px 56px;
       background: var(--grey);
     }
-    .clients-wall {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 4px 0;
-      margin-top: 80px;
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
     }
-    .cl {
-      font-family: var(--sans);
-      font-size: 11px; font-weight: 500;
-      letter-spacing: .14em; text-transform: uppercase;
-      color: var(--black); opacity: .4;
-      padding: 11px 22px;
-      white-space: nowrap;
-      transition: opacity .22s, color .22s;
-      cursor: default;
+    .logo-tile {
+      background: #fff;
+      aspect-ratio: 2 / 1;
+      display: flex; align-items: center; justify-content: center;
+      padding: 18px 26px;
     }
-    .cl.md { font-size: 14px; font-weight: 600; letter-spacing: .08em; padding: 13px 26px; }
-    .cl.lg { font-size: 20px; font-weight: 700; letter-spacing: -.01em; padding: 14px 30px; }
-    .cl:hover { opacity: 1; color: var(--green); }
-    .cl-dot {
-      display: inline-block; width: 3px; height: 3px;
-      background: var(--black); border-radius: 50%;
-      opacity: .15; vertical-align: middle;
-      flex-shrink: 0; align-self: center;
+    .logo-tile img {
+      max-width: 100%; max-height: 100%;
+      height: auto;
+      object-fit: contain; display: block;
     }
     @media (max-width: 900px) {
       .clients-section { padding: 80px 28px; }
-      .cl.lg { font-size: 15px; }
-      .cl.md { font-size: 12px; }
-      .cl { font-size: 10px; padding: 9px 14px; }
+      .logo-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .logo-tile { padding: 12px 16px; }
     }
 
     /* ─── TESTIMONIALS ───────────────────────────────────── */
@@ -1091,61 +1079,52 @@
     <h2 class="section-title">Trusted By <em>The Best</em></h2>
   </div>
 
-  <div class="clients-wall reveal">
-
-    <!-- Row 1 — Flagship names -->
-    <span class="cl lg">Subaru</span><span class="cl-dot"></span>
-    <span class="cl lg">Parramatta Eels</span><span class="cl-dot"></span>
-    <span class="cl lg">McGrath</span><span class="cl-dot"></span>
-    <span class="cl lg">Budgy Smuggler</span><span class="cl-dot"></span>
-    <span class="cl lg">UNSW Sydney</span><span class="cl-dot"></span>
-    <span class="cl lg">Suntory</span>
-
-    <!-- Row 2 — Mid-tier prominent -->
-    <div style="flex-basis:100%;height:0"></div>
-    <span class="cl md">NFL AU/NZ</span><span class="cl-dot"></span>
-    <span class="cl md">CUB</span><span class="cl-dot"></span>
-    <span class="cl md">Taste Living</span><span class="cl-dot"></span>
-    <span class="cl md">Rebel Donuts</span><span class="cl-dot"></span>
-    <span class="cl md">Hello Sport</span><span class="cl-dot"></span>
-    <span class="cl md">GMS</span><span class="cl-dot"></span>
-    <span class="cl md">Indigenous Wealth</span><span class="cl-dot"></span>
-    <span class="cl md">Earls</span><span class="cl-dot"></span>
-    <span class="cl md">Saint Peter</span>
-
-    <!-- Row 3 -->
-    <div style="flex-basis:100%;height:0"></div>
-    <span class="cl">Dr. Pressure</span><span class="cl-dot"></span>
-    <span class="cl">Hunnit</span><span class="cl-dot"></span>
-    <span class="cl">Asta Resort</span><span class="cl-dot"></span>
-    <span class="cl">7th &amp; York</span><span class="cl-dot"></span>
-    <span class="cl">Gitanö</span><span class="cl-dot"></span>
-    <span class="cl">September</span><span class="cl-dot"></span>
-    <span class="cl">Bred</span><span class="cl-dot"></span>
-    <span class="cl">Shosai</span><span class="cl-dot"></span>
-    <span class="cl">SOVR</span><span class="cl-dot"></span>
-    <span class="cl">WT</span><span class="cl-dot"></span>
-    <span class="cl">Old Mates</span><span class="cl-dot"></span>
-    <span class="cl">Grouse</span>
-
-    <!-- Row 4 -->
-    <div style="flex-basis:100%;height:0"></div>
-    <span class="cl">Zjoosh</span><span class="cl-dot"></span>
-    <span class="cl">Esteban</span><span class="cl-dot"></span>
-    <span class="cl">Elliott's</span><span class="cl-dot"></span>
-    <span class="cl">Atticus Hospitality</span><span class="cl-dot"></span>
-    <span class="cl">Rasā House</span><span class="cl-dot"></span>
-    <span class="cl">Guru</span><span class="cl-dot"></span>
-    <span class="cl">Wisecast</span><span class="cl-dot"></span>
-    <span class="cl">MD Recruitment</span><span class="cl-dot"></span>
-    <span class="cl">Respire</span><span class="cl-dot"></span>
-    <span class="cl">Bandu</span><span class="cl-dot"></span>
-    <span class="cl">Old Ignatians Union</span><span class="cl-dot"></span>
-    <span class="cl">Tequila Mockingbird</span><span class="cl-dot"></span>
-    <span class="cl">Plant Passenger</span><span class="cl-dot"></span>
-    <span class="cl">The Retail Score</span><span class="cl-dot"></span>
-    <span class="cl">The Bye Round Podcast</span>
-
+  <div class="logo-grid reveal">
+    <div class="logo-tile"><img src="images/clients/subaru.png" style="width:58%" alt="Subaru" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/parramatta-eels.png" style="width:45%" alt="Parramatta Eels" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/nfl.png" style="width:50%" alt="NFL Australia & New Zealand" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/mcgrath.png" style="width:92%" alt="McGrath" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/unsw.png" style="width:44%" alt="UNSW Sydney" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/suntory.png" style="width:92%" alt="Suntory" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/cub.png" style="width:78%" alt="CUB" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/budgy-smuggler.png" style="width:66%" alt="Budgy Smuggler" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/saint-peter.png" style="width:71%" alt="Saint Peter" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/earls.png" style="width:80%" alt="Earls Collection" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/esteban.png" style="width:83%" alt="Esteban" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/elliotts.png" style="width:92%" alt="Elliott's" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/atticus.png" style="width:65%" alt="Atticus Hospitality" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/indigenous-wealth.png" style="width:86%" alt="Indigenous Wealth" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/taste-living.png" style="width:92%" alt="Taste Living" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/rebel-donuts.png" style="width:45%" alt="Rebel Donuts" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/hello-sport.png" style="width:45%" alt="Hello Sport" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/gms.png" style="width:61%" alt="GMS" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/tequila-mockingbird.png" style="width:73%" alt="Tequila Mockingbird" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/zjoosh.png" style="width:84%" alt="Zjoosh" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/rasa-house.png" style="width:56%" alt="Rasā House" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/old-mates.png" style="width:45%" alt="Old Mates" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/asta-resort.png" style="width:92%" alt="Asta Resort" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/7th-york.png" style="width:74%" alt="7th &amp; York" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/gitano.png" style="width:77%" alt="Gitanö" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/september.png" style="width:68%" alt="September" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/bred.png" style="width:69%" alt="Bred" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/shosai.png" style="width:92%" alt="Shosai" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/sovr.png" style="width:83%" alt="SOVR" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/wt.png" style="width:73%" alt="WT" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/grouse.png" style="width:35%" alt="Grouse" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/stranger.png" style="width:68%" alt="Stranger" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/bloom.png" style="width:76%" alt="Bloom" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/dr-pressure.png" style="width:92%" alt="Dr. Pressure" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/hunnit.png" style="width:45%" alt="Hunnit Projects" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/rugby-league-guru.png" style="width:70%" alt="Rugby League Guru" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/wisecast.png" style="width:92%" alt="Wisecast" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/md-recruitment.png" style="width:92%" alt="MD Recruitment" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/respire.png" style="width:62%" alt="Respire" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/bandu.png" style="width:92%" alt="Bandu" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/old-ignatians.png" style="width:35%" alt="Old Ignatians' Union" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/plant-passenger.png" style="width:92%" alt="Plant Passenger" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/the-retail-score.png" style="width:60%" alt="The Retail Score" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/bye-round.png" style="width:68%" alt="The Bye Round Podcast" loading="lazy"></div>
+    <div class="logo-tile"><img src="images/clients/a-mark.png" style="width:45%" alt="Client logo" loading="lazy"></div>
   </div>
 </section>
 
