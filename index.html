@@ -609,15 +609,22 @@
       will-change: scale;
     }
     .logo-collage.in img { opacity: 1; transform: none; }
-    .collage-title {
-      position: absolute; left: 0.05%; top: 1.07%;
-      font-family: var(--sans); font-weight: 700;
-      font-size: 5.98cqw; line-height: .82;
-      letter-spacing: -.06em; text-transform: uppercase;
-      color: var(--green); white-space: nowrap;
+    .collage-stat {
+      position: absolute; left: 0; top: 1.5%;
     }
-    .collage-title .hl-word:hover { transform: scale(1.1) translateY(-4px); }
+    .collage-stat-n {
+      font-family: var(--sans); font-weight: 600;
+      font-size: 9cqw; line-height: .9;
+      letter-spacing: -.035em; color: var(--green);
+    }
+    .collage-stat-l {
+      margin-top: 1.2cqw;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--black); opacity: .5;
+    }
     @media (max-width: 960px) {
+      .collage-stat { display: none; }
       .clients-section { padding: 80px 28px; }
       .logo-collage {
         aspect-ratio: auto;
@@ -626,10 +633,6 @@
         gap: 20px 22px;
       }
       .logo-collage img { position: static; width: calc(var(--w) * 2.2); }
-      .collage-title {
-        position: static; width: 100%;
-        font-size: clamp(44px, 13vw, 96px); margin-bottom: 16px;
-      }
     }
     @media (prefers-reduced-motion: reduce) {
       .logo-collage img { opacity: 1; transform: none; transition: none; }
@@ -1093,8 +1096,15 @@
 
 <!-- ── CLIENTS ───────────────────────────────────────── -->
 <section class="clients-section" id="clients">
+  <div class="section-head reveal">
+    <span class="section-label">Our Clients</span>
+    <h2 class="section-title">Who We've <em>Worked With</em></h2>
+  </div>
   <div class="logo-collage">
-    <h2 class="collage-title">Who We<br>Have<br>Worked<br>With</h2>
+    <div class="collage-stat reveal">
+      <div class="collage-stat-n" data-count="90" data-suffix="+">90+</div>
+      <div class="collage-stat-l">Brands &amp; counting</div>
+    </div>
     <img src="images/clients/mate-maa-tonga.png" alt="Mate Ma'a Tonga" loading="lazy" style="--x:25.12%;--y:1.18%;--w:7.31%;--i:0">
     <img src="images/clients/dr-pressure.png" alt="Dr. Pressure" loading="lazy" style="--x:36.27%;--y:2.16%;--w:17.89%;--i:1">
     <img src="images/clients/rebel-donuts.png" alt="Rebel Donuts" loading="lazy" style="--x:58.16%;--y:0.00%;--w:7.95%;--i:2">
@@ -1335,7 +1345,7 @@
       }
       Array.from(el.childNodes).forEach(process);
     }
-    document.querySelectorAll('.hero-hl,.section-title,.about-hl,.contact-hl,.collage-title').forEach(splitWords);
+    document.querySelectorAll('.hero-hl,.section-title,.about-hl,.contact-hl').forEach(splitWords);
   })();
 
   /* ══════════════════════════════════════════════════════
