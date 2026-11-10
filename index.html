@@ -590,38 +590,49 @@
     }
 
     /* ─── CLIENTS ───────────────────────────────────────── */
-    .clients-section { padding: 110px 56px; background: #fff; }
+    .clients-section { padding: 130px 56px; background: #fff; }
     .logo-collage {
       position: relative;
-      aspect-ratio: 1920 / 1080;
-      max-width: 1600px; margin: 0 auto;
+      aspect-ratio: 1811.5 / 1020.5;
       container-type: inline-size;
     }
     .logo-collage img {
       position: absolute;
       left: var(--x); top: var(--y); width: var(--w);
       height: auto; display: block;
+      opacity: 0; transform: translateY(18px) scale(.85);
+      scale: var(--m, 1);
+      transition:
+        opacity .7s cubic-bezier(.16,1,.3,1) calc(var(--i) * 22ms),
+        transform .9s cubic-bezier(.16,1,.3,1) calc(var(--i) * 22ms),
+        scale .35s cubic-bezier(.22,1,.36,1);
+      will-change: scale;
     }
+    .logo-collage.in img { opacity: 1; transform: none; }
     .collage-title {
-      position: absolute; left: 4.19%; top: 3.4%;
+      position: absolute; left: 0.05%; top: 1.07%;
       font-family: var(--sans); font-weight: 700;
-      font-size: 5.65cqw; line-height: .82;
+      font-size: 5.98cqw; line-height: .82;
       letter-spacing: -.06em; text-transform: uppercase;
       color: var(--green); white-space: nowrap;
     }
-    @media (max-width: 760px) {
-      .clients-section { padding: 72px 20px; }
+    .collage-title .hl-word:hover { transform: scale(1.1) translateY(-4px); }
+    @media (max-width: 960px) {
+      .clients-section { padding: 80px 28px; }
       .logo-collage {
         aspect-ratio: auto;
         display: flex; flex-wrap: wrap;
         justify-content: center; align-items: center;
         gap: 20px 22px;
       }
-      .logo-collage img { position: static; width: calc(var(--w) * 2.3); }
+      .logo-collage img { position: static; width: calc(var(--w) * 2.2); }
       .collage-title {
         position: static; width: 100%;
-        font-size: 15vw; margin-bottom: 16px;
+        font-size: clamp(44px, 13vw, 96px); margin-bottom: 16px;
       }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .logo-collage img { opacity: 1; transform: none; transition: none; }
     }
 
     /* ─── TESTIMONIALS ───────────────────────────────────── */
@@ -1082,55 +1093,55 @@
 
 <!-- ── CLIENTS ───────────────────────────────────────── -->
 <section class="clients-section" id="clients">
-  <div class="logo-collage reveal">
+  <div class="logo-collage">
     <h2 class="collage-title">Who We<br>Have<br>Worked<br>With</h2>
-    <img src="images/clients/mate-maa-tonga.png" alt="Mate Ma'a Tonga" loading="lazy" style="--x:27.84%;--y:3.66%;--w:6.90%">
-    <img src="images/clients/dr-pressure.png" alt="Dr. Pressure" loading="lazy" style="--x:38.36%;--y:4.58%;--w:16.88%">
-    <img src="images/clients/rebel-donuts.png" alt="Rebel Donuts" loading="lazy" style="--x:59.01%;--y:2.55%;--w:7.50%">
-    <img src="images/clients/hunnit.png" alt="Hunnit Projects" loading="lazy" style="--x:72.55%;--y:2.69%;--w:7.34%">
-    <img src="images/clients/subaru.png" alt="Subaru" loading="lazy" style="--x:84.01%;--y:3.52%;--w:12.84%">
-    <img src="images/clients/grouse.png" alt="Grouse" loading="lazy" style="--x:37.37%;--y:15.69%;--w:5.55%">
-    <img src="images/clients/old-mates.png" alt="Old Mates" loading="lazy" style="--x:46.28%;--y:16.16%;--w:5.89%">
-    <img src="images/clients/asta-resort.png" alt="Asta Resort" loading="lazy" style="--x:54.61%;--y:20.00%;--w:16.88%">
-    <img src="images/clients/7th-york.png" alt="7th &amp; York" loading="lazy" style="--x:74.90%;--y:21.76%;--w:9.22%">
-    <img src="images/clients/gitano.png" alt="Gitanö" loading="lazy" style="--x:86.69%;--y:20.09%;--w:11.41%">
-    <img src="images/clients/a-mark.png" alt="Client logo" loading="lazy" style="--x:19.19%;--y:32.18%;--w:5.60%">
-    <img src="images/clients/garlos.png" alt="Garlo's" loading="lazy" style="--x:27.24%;--y:31.16%;--w:7.60%">
-    <img src="images/clients/september.png" alt="September" loading="lazy" style="--x:36.04%;--y:30.97%;--w:12.14%">
-    <img src="images/clients/hello-sport.png" alt="Hello Sport" loading="lazy" style="--x:52.14%;--y:29.26%;--w:7.19%">
-    <img src="images/clients/budgy-smuggler.png" alt="Budgy Smuggler" loading="lazy" style="--x:61.25%;--y:28.70%;--w:12.84%">
-    <img src="images/clients/bred.png" alt="Bred" loading="lazy" style="--x:76.67%;--y:32.45%;--w:6.88%">
-    <img src="images/clients/shosai.png" alt="Shosai" loading="lazy" style="--x:87.97%;--y:32.92%;--w:10.00%">
-    <img src="images/clients/stranger.png" alt="Stranger" loading="lazy" style="--x:4.32%;--y:43.75%;--w:11.04%">
-    <img src="images/clients/bloom.png" alt="Bloom" loading="lazy" style="--x:17.01%;--y:45.65%;--w:7.55%">
-    <img src="images/clients/taste-living.png" alt="Taste Living" loading="lazy" style="--x:25.68%;--y:45.00%;--w:16.33%">
-    <img src="images/clients/earls.png" alt="Earls Collection" loading="lazy" style="--x:47.71%;--y:46.06%;--w:6.25%">
-    <img src="images/clients/gms.png" alt="GMS" loading="lazy" style="--x:58.72%;--y:45.69%;--w:8.20%">
-    <img src="images/clients/nfl.png" alt="NFL Australia &amp; New Zealand" loading="lazy" style="--x:73.15%;--y:42.50%;--w:8.65%">
-    <img src="images/clients/parramatta-eels.png" alt="Parramatta Eels" loading="lazy" style="--x:87.50%;--y:41.57%;--w:9.48%">
-    <img src="images/clients/wt.png" alt="WT" loading="lazy" style="--x:4.14%;--y:55.51%;--w:9.11%">
-    <img src="images/clients/cub.png" alt="CUB" loading="lazy" style="--x:17.03%;--y:55.83%;--w:9.32%">
-    <img src="images/clients/indigenous-wealth.png" alt="Indigenous Wealth" loading="lazy" style="--x:29.56%;--y:56.25%;--w:14.51%">
-    <img src="images/clients/unsw.png" alt="UNSW Sydney" loading="lazy" style="--x:47.03%;--y:54.91%;--w:6.85%">
-    <img src="images/clients/saint-peter.png" alt="Saint Peter" loading="lazy" style="--x:56.43%;--y:56.57%;--w:14.45%">
-    <img src="images/clients/old-ignatians.png" alt="Old Ignatians' Union" loading="lazy" style="--x:72.34%;--y:59.68%;--w:8.02%">
-    <img src="images/clients/sovr.png" alt="SOVR" loading="lazy" style="--x:79.11%;--y:56.06%;--w:7.34%">
-    <img src="images/clients/mcgrath.png" alt="McGrath" loading="lazy" style="--x:4.32%;--y:66.20%;--w:19.06%">
-    <img src="images/clients/suntory.png" alt="Suntory" loading="lazy" style="--x:29.61%;--y:67.64%;--w:13.54%">
-    <img src="images/clients/bye-round.png" alt="The Bye Round Podcast" loading="lazy" style="--x:54.95%;--y:70.93%;--w:12.68%">
-    <img src="images/clients/tequila-mockingbird.png" alt="Tequila Mockingbird" loading="lazy" style="--x:82.76%;--y:62.08%;--w:15.73%">
-    <img src="images/clients/plant-passenger.png" alt="Plant Passenger" loading="lazy" style="--x:4.14%;--y:79.03%;--w:19.40%">
-    <img src="images/clients/the-retail-score.png" alt="The Retail Score" loading="lazy" style="--x:26.64%;--y:75.14%;--w:9.30%">
-    <img src="images/clients/zjoosh.png" alt="Zjoosh" loading="lazy" style="--x:37.73%;--y:73.66%;--w:15.57%">
-    <img src="images/clients/rugby-league-guru.png" alt="Rugby League Guru" loading="lazy" style="--x:63.12%;--y:80.37%;--w:9.87%">
-    <img src="images/clients/bandu.png" alt="Bandu" loading="lazy" style="--x:84.82%;--y:76.39%;--w:13.59%">
-    <img src="images/clients/esteban.png" alt="Esteban" loading="lazy" style="--x:4.14%;--y:88.06%;--w:11.38%">
-    <img src="images/clients/elliotts.png" alt="Elliott's" loading="lazy" style="--x:17.84%;--y:88.70%;--w:11.43%">
-    <img src="images/clients/atticus.png" alt="Atticus Hospitality" loading="lazy" style="--x:30.73%;--y:86.67%;--w:12.16%">
-    <img src="images/clients/rasa-house.png" alt="Rasā House" loading="lazy" style="--x:45.60%;--y:84.77%;--w:9.74%">
-    <img src="images/clients/md-recruitment.png" alt="MD Recruitment" loading="lazy" style="--x:58.98%;--y:91.30%;--w:21.07%">
-    <img src="images/clients/wisecast.png" alt="Wisecast" loading="lazy" style="--x:74.79%;--y:83.52%;--w:10.73%">
-    <img src="images/clients/respire.png" alt="Respire" loading="lazy" style="--x:88.07%;--y:87.36%;--w:9.61%">
+    <img src="images/clients/mate-maa-tonga.png" alt="Mate Ma'a Tonga" loading="lazy" style="--x:25.12%;--y:1.18%;--w:7.31%;--i:0">
+    <img src="images/clients/dr-pressure.png" alt="Dr. Pressure" loading="lazy" style="--x:36.27%;--y:2.16%;--w:17.89%;--i:1">
+    <img src="images/clients/rebel-donuts.png" alt="Rebel Donuts" loading="lazy" style="--x:58.16%;--y:0.00%;--w:7.95%;--i:2">
+    <img src="images/clients/hunnit.png" alt="Hunnit Projects" loading="lazy" style="--x:72.51%;--y:0.15%;--w:7.78%;--i:3">
+    <img src="images/clients/subaru.png" alt="Subaru" loading="lazy" style="--x:84.65%;--y:1.03%;--w:13.61%;--i:4">
+    <img src="images/clients/grouse.png" alt="Grouse" loading="lazy" style="--x:35.22%;--y:13.91%;--w:5.88%;--i:5">
+    <img src="images/clients/old-mates.png" alt="Old Mates" loading="lazy" style="--x:44.66%;--y:14.40%;--w:6.24%;--i:6">
+    <img src="images/clients/asta-resort.png" alt="Asta Resort" loading="lazy" style="--x:53.49%;--y:18.47%;--w:17.89%;--i:7">
+    <img src="images/clients/7th-york.png" alt="7th &amp; York" loading="lazy" style="--x:74.99%;--y:20.33%;--w:9.77%;--i:8">
+    <img src="images/clients/gitano.png" alt="Gitanö" loading="lazy" style="--x:87.50%;--y:18.57%;--w:12.09%;--i:9">
+    <img src="images/clients/a-mark.png" alt="Client logo" loading="lazy" style="--x:15.95%;--y:31.36%;--w:5.93%;--i:10">
+    <img src="images/clients/garlos.png" alt="Garlo's" loading="lazy" style="--x:24.48%;--y:30.28%;--w:8.06%;--i:11">
+    <img src="images/clients/september.png" alt="September" loading="lazy" style="--x:33.81%;--y:30.08%;--w:12.86%;--i:12">
+    <img src="images/clients/hello-sport.png" alt="Hello Sport" loading="lazy" style="--x:50.87%;--y:28.27%;--w:7.62%;--i:13">
+    <img src="images/clients/budgy-smuggler.png" alt="Budgy Smuggler" loading="lazy" style="--x:60.53%;--y:27.68%;--w:13.61%;--i:14">
+    <img src="images/clients/bred.png" alt="Bred" loading="lazy" style="--x:76.87%;--y:31.65%;--w:7.29%;--i:15">
+    <img src="images/clients/shosai.png" alt="Shosai" loading="lazy" style="--x:88.85%;--y:32.14%;--w:10.60%;--i:16">
+    <img src="images/clients/stranger.png" alt="Stranger" loading="lazy" style="--x:0.19%;--y:43.61%;--w:11.70%;--i:17">
+    <img src="images/clients/bloom.png" alt="Bloom" loading="lazy" style="--x:13.64%;--y:45.61%;--w:8.00%;--i:18">
+    <img src="images/clients/taste-living.png" alt="Taste Living" loading="lazy" style="--x:22.83%;--y:44.93%;--w:17.31%;--i:19">
+    <img src="images/clients/earls.png" alt="Earls Collection" loading="lazy" style="--x:46.18%;--y:46.06%;--w:6.62%;--i:20">
+    <img src="images/clients/gms.png" alt="GMS" loading="lazy" style="--x:57.85%;--y:45.66%;--w:8.69%;--i:21">
+    <img src="images/clients/nfl.png" alt="NFL Australia &amp; New Zealand" loading="lazy" style="--x:73.14%;--y:42.28%;--w:9.16%;--i:22">
+    <img src="images/clients/parramatta-eels.png" alt="Parramatta Eels" loading="lazy" style="--x:88.35%;--y:41.30%;--w:10.05%;--i:23">
+    <img src="images/clients/wt.png" alt="WT" loading="lazy" style="--x:0.00%;--y:56.05%;--w:9.66%;--i:24">
+    <img src="images/clients/cub.png" alt="CUB" loading="lazy" style="--x:13.66%;--y:56.39%;--w:9.88%;--i:25">
+    <img src="images/clients/indigenous-wealth.png" alt="Indigenous Wealth" loading="lazy" style="--x:26.94%;--y:56.83%;--w:15.37%;--i:26">
+    <img src="images/clients/unsw.png" alt="UNSW Sydney" loading="lazy" style="--x:45.46%;--y:55.41%;--w:7.26%;--i:27">
+    <img src="images/clients/saint-peter.png" alt="Saint Peter" loading="lazy" style="--x:55.42%;--y:57.18%;--w:15.32%;--i:28">
+    <img src="images/clients/old-ignatians.png" alt="Old Ignatians' Union" loading="lazy" style="--x:72.29%;--y:60.46%;--w:8.50%;--i:29">
+    <img src="images/clients/sovr.png" alt="SOVR" loading="lazy" style="--x:79.46%;--y:56.64%;--w:7.78%;--i:30">
+    <img src="images/clients/mcgrath.png" alt="McGrath" loading="lazy" style="--x:0.19%;--y:67.37%;--w:20.20%;--i:31">
+    <img src="images/clients/suntory.png" alt="Suntory" loading="lazy" style="--x:26.99%;--y:68.89%;--w:14.35%;--i:32">
+    <img src="images/clients/bye-round.png" alt="The Bye Round Podcast" loading="lazy" style="--x:53.85%;--y:72.37%;--w:13.44%;--i:33">
+    <img src="images/clients/tequila-mockingbird.png" alt="Tequila Mockingbird" loading="lazy" style="--x:83.33%;--y:63.01%;--w:16.67%;--i:34">
+    <img src="images/clients/plant-passenger.png" alt="Plant Passenger" loading="lazy" style="--x:0.00%;--y:80.94%;--w:20.56%;--i:35">
+    <img src="images/clients/the-retail-score.png" alt="The Retail Score" loading="lazy" style="--x:23.85%;--y:76.83%;--w:9.85%;--i:36">
+    <img src="images/clients/zjoosh.png" alt="Zjoosh" loading="lazy" style="--x:35.61%;--y:75.26%;--w:16.51%;--i:37">
+    <img src="images/clients/rugby-league-guru.png" alt="Rugby League Guru" loading="lazy" style="--x:62.52%;--y:82.36%;--w:10.46%;--i:38">
+    <img src="images/clients/bandu.png" alt="Bandu" loading="lazy" style="--x:85.51%;--y:78.15%;--w:14.41%;--i:39">
+    <img src="images/clients/esteban.png" alt="Esteban" loading="lazy" style="--x:0.00%;--y:90.49%;--w:12.06%;--i:40">
+    <img src="images/clients/elliotts.png" alt="Elliott's" loading="lazy" style="--x:14.52%;--y:91.18%;--w:12.12%;--i:41">
+    <img src="images/clients/atticus.png" alt="Atticus Hospitality" loading="lazy" style="--x:28.18%;--y:89.02%;--w:12.89%;--i:42">
+    <img src="images/clients/rasa-house.png" alt="Rasā House" loading="lazy" style="--x:43.94%;--y:87.02%;--w:10.32%;--i:43">
+    <img src="images/clients/md-recruitment.png" alt="MD Recruitment" loading="lazy" style="--x:58.13%;--y:93.92%;--w:22.33%;--i:44">
+    <img src="images/clients/wisecast.png" alt="Wisecast" loading="lazy" style="--x:74.88%;--y:85.69%;--w:11.37%;--i:45">
+    <img src="images/clients/respire.png" alt="Respire" loading="lazy" style="--x:88.96%;--y:89.76%;--w:10.18%;--i:46">
   </div>
 </section>
 
@@ -1324,7 +1335,7 @@
       }
       Array.from(el.childNodes).forEach(process);
     }
-    document.querySelectorAll('.hero-hl,.section-title,.about-hl,.contact-hl').forEach(splitWords);
+    document.querySelectorAll('.hero-hl,.section-title,.about-hl,.contact-hl,.collage-title').forEach(splitWords);
   })();
 
   /* ══════════════════════════════════════════════════════
@@ -1428,6 +1439,39 @@
     });
   })();
 
+
+  /* ── Client logo collage: staggered entrance + cursor magnify ── */
+  (function(){
+    const col = document.querySelector('.logo-collage');
+    if (!col) return;
+    const logos = [...col.querySelectorAll('img')];
+    new IntersectionObserver((es, o) => {
+      if (es[0].isIntersecting) { col.classList.add('in'); o.disconnect(); }
+    }, { threshold: .15 }).observe(col);
+
+    const fine = matchMedia('(hover: hover) and (pointer: fine) and (min-width: 961px)');
+    const RADIUS = 230, BOOST = .45;
+    let mx = 0, my = 0, queued = false;
+    function update(){
+      queued = false;
+      logos.forEach(img => {
+        const r = img.getBoundingClientRect();
+        const dx = mx - (r.left + r.width / 2), dy = my - (r.top + r.height / 2);
+        const t = Math.max(0, 1 - Math.hypot(dx, dy) / RADIUS);
+        const m = 1 + BOOST * t * t;
+        img.style.setProperty('--m', m.toFixed(3));
+        img.style.zIndex = m > 1.01 ? Math.round(m * 100) : '';
+      });
+    }
+    col.addEventListener('mousemove', e => {
+      if (!fine.matches) return;
+      mx = e.clientX; my = e.clientY;
+      if (!queued) { queued = true; requestAnimationFrame(update); }
+    });
+    col.addEventListener('mouseleave', () => {
+      logos.forEach(img => { img.style.removeProperty('--m'); img.style.zIndex = ''; });
+    });
+  })();
 
 </script>
 
