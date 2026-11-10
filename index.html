@@ -105,9 +105,9 @@
       position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(
         to bottom,
-        rgba(5,5,5,.15) 0%,
-        rgba(5,5,5,.5)  60%,
-        rgba(5,5,5,.82) 100%
+        rgba(5,5,5,.35) 0%,
+        rgba(5,5,5,.55) 55%,
+        rgba(5,5,5,.86) 100%
       );
     }
     .hero > *:not(.hero-video):not(.hero-overlay) { position: relative; z-index: 2; }
@@ -147,7 +147,7 @@
     .hero-hl em {
       font-family: var(--serif);
       font-style: italic; font-weight: 700;
-      text-transform: none; color: var(--green);
+      text-transform: none; color: var(--egg);
       letter-spacing: -.01em;
     }
     .hero-bottom {
@@ -698,7 +698,7 @@
       color: var(--green);
     }
     .about-hl .hl-word:hover { transform: scale(1.1) translateY(-4px); }
-    .hero-hl em .hl-word,
+    .hero-hl em .hl-word { color: var(--egg); }
     .section-title em .hl-word,
     .contact-hl em .hl-word { color: var(--green); }
 
@@ -824,12 +824,9 @@
 
 <!-- ── HERO ────────────────────────────────────────── -->
 <section class="hero grain">
-  <!-- ── SHOWREEL: drop your video file in and uncomment the source line ──
-  <video class="hero-video" autoplay muted loop playsinline poster="images/project-fashion.jpg">
-    <source src="videos/showreel.mp4" type="video/mp4">
+  <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="images/hero-poster.jpg">
+    <source src="videos/hero.mp4" type="video/mp4">
   </video>
-  ── Until then the fallback poster image shows ── -->
-  <video class="hero-video" autoplay muted loop playsinline poster="images/project-fashion.jpg"></video>
   <div class="hero-overlay"></div>
 <h1 class="hero-hl reveal d1">
     WE ARE A <em>Full-Service</em><br>
