@@ -230,3 +230,24 @@ footer { background: var(--black); padding: 60px var(--gutter); display: flex; a
   .faq summary { font-size: 16px; padding: 22px 0; }
   .faq p { padding-right: 0; }
 }
+
+/* PHOTO HERO: text left, full-height photo right */
+.sv-hero--photo { padding: 0; gap: 0; align-items: stretch; }
+.sv-hero--photo > :first-child { padding: 190px 56px 96px var(--gutter); align-self: end; }
+.sv-photo { position: relative; height: 100%; min-height: 92svh; overflow: hidden; }
+.sv-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* PHOTO STRIP: edge-to-edge row of images */
+.photo-strip { display: flex; gap: 12px; height: 520px; }
+.photo-strip img { flex: 2 1 0; min-width: 0; height: 100%; object-fit: cover; transition: flex-grow .8s cubic-bezier(.16,1,.3,1); }
+.photo-strip img.wide { flex-grow: 4.4; }
+.photo-strip img:hover { flex-grow: 3; }
+.photo-strip img.wide:hover { flex-grow: 5.4; }
+
+@media (max-width: 960px) {
+  .sv-hero--photo > :first-child { padding: 140px var(--gutter) 0; }
+  .sv-photo { min-height: 0; height: auto; aspect-ratio: 4 / 5; }
+  .photo-strip { display: grid; grid-template-columns: 1fr 1fr; grid-auto-flow: dense; gap: 8px; height: auto; }
+  .photo-strip img { aspect-ratio: 2 / 3; width: 100%; height: auto; }
+  .photo-strip img.wide { grid-column: 1 / -1; aspect-ratio: 3 / 2; }
+}

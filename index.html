@@ -1067,26 +1067,6 @@
   </div>
 </section>
 
-<!-- ── MOSAIC ───────────────────────────────────────── -->
-<section class="section-wrap" id="lens" style="padding-top:0">
-  <div class="section-head reveal">
-    <span class="section-label">Through The Lens</span>
-    <h2 class="section-title">Shot By <em>Us</em></h2>
-  </div>
-  <div class="mosaic">
-    <figure class="mosaic-item wide"><img src="images/picks/fashion-harbour.jpg" alt="Model in a pink striped shirt by the harbour at golden hour" loading="lazy"></figure>
-    <figure class="mosaic-item"><img src="images/picks/fashion-polo.jpg" alt="Model in a pale blue knit polo by a window" loading="lazy"></figure>
-    <figure class="mosaic-item"><img src="images/picks/hotel-robe.jpg" alt="Woman in a robe sitting on a hotel bed" loading="lazy"></figure>
-    <figure class="mosaic-item"><img src="images/picks/denim-cap.jpg" alt="Man in a denim jacket and camo cap seen from behind" loading="lazy"></figure>
-    <figure class="mosaic-item"><img src="images/picks/fashion-window.jpg" alt="Model sitting on a window ledge in a navy skirt" loading="lazy"></figure>
-    <figure class="mosaic-item wide"><img src="images/picks/budgy-hoodies.jpg" alt="Two men in pink and blue hoodies back to back on a couch" loading="lazy"></figure>
-    <figure class="mosaic-item"><img src="images/picks/disco-helmet.jpg" alt="Man shouting in a mirror-ball helmet and checked sunglasses" loading="lazy"></figure>
-    <figure class="mosaic-item"><img src="images/picks/resort-pool.jpg" alt="Woman reading on a sun lounger by a white apartment block" loading="lazy"></figure>
-    <figure class="mosaic-item"><img src="images/picks/rose-portrait.jpg" alt="Couple posing with a red rose against a black backdrop" loading="lazy"></figure>
-    <figure class="mosaic-item"><img src="images/picks/chef-closeup.jpg" alt="Close-up of a chef at work in low light" loading="lazy"></figure>
-  </div>
-</section>
-
 <!-- ── TESTIMONIALS ──────────────────────────────────── -->
 <section class="testimonials">
   <div class="section-head reveal">
@@ -1599,14 +1579,6 @@
       p.addEventListener('mouseenter', open);
       p.addEventListener('click', open);
     });
-  })();
-
-  /* ── Mosaic: tiles fade up one after another as they scroll in ── */
-  (function(){
-    const io = new IntersectionObserver(es => es.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    }), { threshold: .15 });
-    document.querySelectorAll('.mosaic-item').forEach((el, i) => { el.style.transitionDelay = (i % 4) * 80 + 'ms'; io.observe(el); });
   })();
 
 </script>
