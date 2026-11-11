@@ -143,3 +143,6 @@ fieldset.field { border-width: 0 0 1px; min-width: 0; }
 /* legend sits inside the field padding like the other labels */
 .field legend { float: left; width: 100%; }
 .field .audit-opts { clear: both; }
+
+/* white logo over dark heroes until the nav turns solid */
+body:not(.menu-open) nav:not(.scrolled) .nav-logo img { filter: brightness(0) invert(1); transition: filter .3s; }

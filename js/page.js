@@ -1,4 +1,4 @@
-/* Base behaviour for the service pages (index.html and about.html carry their own inline copy). */
+/* Base behaviour for the inner pages (index.html and about.html carry their own inline copy). */
 (function () {
   const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('scrolled', scrollY > 60);
@@ -35,7 +35,33 @@
       node.parentNode.replaceChild(frag, node);
     } else if (node.nodeType === 1 && node.tagName !== 'BR') Array.from(node.childNodes).forEach(split);
   }
-  document.querySelectorAll('.sv-hl,.section-title,.contact-hl,.intro-hl').forEach(el => Array.from(el.childNodes).forEach(split));
+  document.querySelectorAll('.section-title,.contact-hl,.intro-hl').forEach(el => Array.from(el.childNodes).forEach(split));
+
+  /* Films: play muted while on screen, pause when off it. The sound button unmutes one film at a time. */
+  const films = [...document.querySelectorAll('.film video, .ph-media video')];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const vObs = new IntersectionObserver(entries => entries.forEach(e => {
+    const v = e.target;
+    if (e.isIntersecting) { if (!reduce || v.closest('.film.unmuted')) v.play().catch(() => {}); }
+    else { v.pause(); if (!v.muted) setMuted(v, true); }
+  }), { threshold: .35 });
+  films.forEach(v => { v.muted = true; vObs.observe(v); });
+  function setMuted(v, muted) {
+    v.muted = muted;
+    const f = v.closest('.film'); if (f) f.classList.toggle('unmuted', !muted);
+    const b = f && f.querySelector('.film-sound'); if (b) b.setAttribute('aria-pressed', String(!muted));
+  }
+  document.querySelectorAll('.film').forEach(f => {
+    const v = f.querySelector('video');
+    const toggle = () => {
+      const turnOn = v.muted;
+      films.forEach(o => { if (o !== v && !o.muted) setMuted(o, true); });
+      setMuted(v, !turnOn);
+      if (turnOn) { v.play().catch(() => {}); }
+    };
+    f.querySelector('.film-sound').addEventListener('click', toggle);
+    v.addEventListener('click', toggle);
+  });
 
   const pt = document.getElementById('page-transition');
   if (pt) {
