@@ -336,3 +336,57 @@ footer { background: var(--black); padding: 60px var(--gutter); display: flex; a
   .next-arrow { display: none; }
   footer { padding: 44px var(--gutter); }
 }
+
+/* WORK MOSAIC (content creation): project cards that play their film on hover */
+.work-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
+.work { position: relative; overflow: hidden; height: 520px; background: var(--black); color: var(--egg); text-decoration: none; display: block; }
+.work.tall { height: 720px; }
+.work.w7 { grid-column: span 7; } .work.w5 { grid-column: span 5; } .work.w6 { grid-column: span 6; } .work.w4 { grid-column: span 4; }
+.work img, .work video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.work img { transform: scale(1.06); transition: transform 1.4s var(--ease), opacity .6s; }
+.work:hover img { transform: scale(1); }
+.work video { opacity: 0; transition: opacity .6s; }
+.work.playing video { opacity: 1; }
+.work::after { content: ''; position: absolute; inset: 0; background: linear-gradient(transparent 45%, rgba(5,5,5,.85) 100%); }
+.work-over { position: absolute; left: 36px; right: 36px; bottom: 34px; z-index: 1; }
+.work-tag { font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; opacity: .7; }
+.work-title { font-size: clamp(30px, 3.2vw, 54px); font-weight: 600; letter-spacing: -.03em; text-transform: uppercase; line-height: .95; margin-top: 12px; }
+.work-cta { display: inline-block; margin-top: 18px; font-size: 11px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; opacity: 0; transform: translateY(8px); transition: opacity .4s, transform .4s var(--ease); }
+.work:hover .work-cta { opacity: 1; transform: none; }
+.work-n { position: absolute; top: 28px; right: 32px; z-index: 1; font-size: 11px; font-weight: 500; letter-spacing: .15em; opacity: .6; }
+@media (max-width: 960px) {
+  .work-grid { grid-template-columns: 1fr; gap: 8px; }
+  .work, .work.tall { grid-column: auto !important; height: 112vw; max-height: 560px; }
+  .work-over { left: 20px; right: 20px; bottom: 22px; }
+  .work-cta { opacity: 1; transform: none; }
+}
+
+/* FEEDS (social): phone mock-ups of client Instagram feeds, drifting sideways */
+.feeds-section { overflow: hidden; }
+.lifts { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 56px; }
+.lift { display: flex; align-items: baseline; gap: 14px; padding: 18px 26px; background: var(--green); color: var(--egg); border-radius: 100px; }
+.lift-n { font-size: clamp(28px, 2.6vw, 40px); font-weight: 600; letter-spacing: -.03em; line-height: 1; }
+.lift-l { font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; opacity: .8; }
+.dark .lift { background: var(--egg); color: var(--black); }
+.feeds { margin: 0 calc(var(--gutter) * -1); }
+.feeds-track { display: flex; gap: 28px; width: max-content; padding: 20px var(--gutter) 10px; animation: drift 70s linear infinite; }
+.feeds:hover .feeds-track { animation-play-state: paused; }
+.phone { flex: 0 0 clamp(230px, 19vw, 290px); text-decoration: none; color: var(--black); }
+.phone:nth-child(even) { margin-top: 48px; }
+.phone-screen {
+  aspect-ratio: 9 / 18.5; overflow: hidden; background: #fff;
+  border: 9px solid #111; border-radius: 38px; box-shadow: 0 30px 60px rgba(5,5,5,.18);
+  transition: transform .6s var(--ease), box-shadow .6s;
+}
+.phone-screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.phone:hover .phone-screen { transform: translateY(-8px); box-shadow: 0 40px 80px rgba(5,5,5,.24); }
+.phone-cap { display: flex; flex-direction: column; gap: 4px; margin-top: 20px; padding-left: 6px; }
+.phone-cap b { font-size: 15px; font-weight: 600; text-transform: uppercase; letter-spacing: -.005em; }
+.phone-cap span { font-size: 10px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--green); }
+@media (max-width: 960px) {
+  .lifts { margin-bottom: 36px; }
+  .lift { padding: 14px 20px; }
+  .phone { flex-basis: 58vw; }
+  .feeds-track { gap: 16px; animation-duration: 50s; }
+}
+@media (prefers-reduced-motion: reduce) { .feeds-track { animation: none; } .feeds { overflow-x: auto; } }
