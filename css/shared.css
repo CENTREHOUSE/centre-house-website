@@ -133,13 +133,12 @@ fieldset.field { border-width: 0 0 1px; min-width: 0; }
   .sector-h, .sector.is-open .sector-h { opacity: 1; left: 16px; right: 12px; bottom: 16px; font-size: 17px; letter-spacing: -.01em; white-space: normal; }
 }
 
-/* SAMPLE FIGURE FLAGS: delete this block once real numbers are in */
-[data-sample] { position: relative; outline: 1px dashed #C77700; outline-offset: 8px; }
-[data-sample]::after {
-  content: 'Sample figures'; position: absolute; top: -19px; right: -8px;
-  font: 600 9px/1 'Inter', sans-serif; letter-spacing: .1em; text-transform: uppercase;
-  background: #C77700; color: #fff; padding: 4px 6px; opacity: 1;
-}
+/* SAMPLE FIGURES: invented numbers are hidden until real ones are supplied.
+   To show a figure, put the real number in and delete its data-sample attribute. */
+[data-sample] { display: none !important; }
+.stat-band:has(> [data-sample]) { display: flex; }
+.stat-band:has(> [data-sample]) > * { flex: 1 1 0; }
+.stat-band:not(:has(> :not([data-sample]) ~ :not([data-sample]))) { display: none; }
 
 /* legend sits inside the field padding like the other labels */
 .field legend { float: left; width: 100%; }
