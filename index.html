@@ -791,7 +791,10 @@
       .testi-tab img { width: calc(var(--lw) * .78px); }
       .hero { padding: 0 28px 64px; }
     }
-  </style>
+      .about-detail-img { position: relative; }
+    .about-detail-img .team-fun { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 27% center; opacity: 0; transition: opacity .45s ease; }
+    .about-detail-img:hover .team-fun { opacity: 1; }
+</style>
 </head>
 <body>
 
@@ -1227,7 +1230,8 @@
 <!-- ── ABOUT DETAIL ──────────────────────────────────── -->
 <section class="about-detail">
   <div class="about-detail-img reveal-clip">
-    <img src="images/chmteams.jpeg" alt="The Centre House team" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <img src="images/team/group.jpg" alt="The Centre House team" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <img class="team-fun" src="images/team/group-fun.jpg" alt="" aria-hidden="true" loading="lazy">
   </div>
 
   <div class="about-detail-content reveal-right d1">

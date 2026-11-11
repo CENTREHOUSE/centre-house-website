@@ -206,19 +206,17 @@
     .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
     .team-card { display: flex; flex-direction: column; gap: 20px; }
     .team-img {
-      width: 100%; aspect-ratio: 3/4; overflow: hidden;
-      background: var(--grey);
-      border: 1px dashed rgba(19,112,83,.25);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 10px; position: relative;
+      width: 100%; aspect-ratio: 4/5; overflow: hidden;
+      background: #1a1a1a; position: relative; cursor: pointer;
     }
-    .team-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
-    .team-img-ph { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-    .team-img-ph svg { opacity: .2; }
-    .team-img-ph span {
-      font-size: 10px; font-weight: 500; letter-spacing: .15em;
-      text-transform: uppercase; color: var(--black); opacity: .3;
+    .team-img img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center top; display: block;
+      transition: opacity .45s ease, transform .9s cubic-bezier(.25,.46,.45,.94);
     }
+    .team-img .team-fun { opacity: 0; transform: scale(1.06); object-position: var(--fun-pos, center top); }
+    .team-img:hover .team-fun, .team-img.is-fun .team-fun { opacity: 1; transform: scale(1); }
+    .team-img:hover img:first-child, .team-img.is-fun img:first-child { transform: scale(1.04); }
     .team-card-tag {
       font-size: 10px; font-weight: 500; letter-spacing: .18em;
       text-transform: uppercase; color: var(--green); margin-bottom: 4px;
@@ -479,48 +477,73 @@
 
     <div class="team-card">
       <div class="team-img reveal-clip">
-        <!-- Replace with: <img src="images/team-sam.jpg" alt="Sam Rigney"> -->
-        <div class="team-img-ph">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          <span>Add Photo</span>
-        </div>
+        <img src="images/team/sam.jpg" alt="Sam Rigney" loading="lazy">
+        <img class="team-fun" src="images/team/sam-fun.jpg" alt="" aria-hidden="true" loading="lazy">
       </div>
       <div class="reveal d1">
         <div class="team-card-tag">Founder</div>
         <div class="team-card-name">Sam Rigney</div>
-        <div class="team-card-role">Creative Director &amp; Founder</div>
+        <div class="team-card-role">CEO &amp; Founder</div>
       </div>
     </div>
 
     <div class="team-card">
       <div class="team-img reveal-clip d1">
-        <!-- Replace with: <img src="images/team-member2.jpg" alt="Name"> -->
-        <div class="team-img-ph">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          <span>Add Photo</span>
-        </div>
+        <img src="images/team/nathan.jpg" alt="Nathan" loading="lazy">
+        <img class="team-fun" src="images/team/nathan-fun.jpg" alt="" aria-hidden="true" loading="lazy">
       </div>
       <div class="reveal d2">
-        <!-- ── EDIT: Name and role ── -->
-        <div class="team-card-tag">Team</div>
-        <div class="team-card-name">Team Member</div>
-        <div class="team-card-role">Role Title</div>
+        <div class="team-card-tag">Creative</div>
+        <div class="team-card-name">Nathan</div>
+        <div class="team-card-role">Head of Creative</div>
       </div>
     </div>
 
     <div class="team-card">
       <div class="team-img reveal-clip d2">
-        <!-- Replace with: <img src="images/team-member3.jpg" alt="Name"> -->
-        <div class="team-img-ph">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          <span>Add Photo</span>
-        </div>
+        <img src="images/team/nick.jpg" alt="Nick" loading="lazy">
+        <img class="team-fun" src="images/team/nick-fun.jpg" alt="" aria-hidden="true" loading="lazy">
       </div>
       <div class="reveal d3">
-        <!-- ── EDIT: Name and role ── -->
+        <div class="team-card-tag">Creative</div>
+        <div class="team-card-name">Nick</div>
+        <div class="team-card-role">Creative Editor &amp; Audio Engineer</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-img reveal-clip">
+        <img src="images/team/savannah.jpg" alt="Savannah" loading="lazy">
+        <img class="team-fun" src="images/team/savannah-fun.jpg" alt="" aria-hidden="true" loading="lazy">
+      </div>
+      <div class="reveal d1">
+        <div class="team-card-tag">Marketing</div>
+        <div class="team-card-name">Savannah</div>
+        <div class="team-card-role">Marketing &amp; Content Executive</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-img reveal-clip d1" style="--fun-pos:68% 30%">
+        <img src="images/team/member-5.jpg" alt="Team member" loading="lazy">
+        <img class="team-fun" src="images/team/member-5-fun.jpg" alt="" aria-hidden="true" loading="lazy">
+      </div>
+      <div class="reveal d2">
         <div class="team-card-tag">Team</div>
-        <div class="team-card-name">Team Member</div>
-        <div class="team-card-role">Role Title</div>
+        <div class="team-card-name">Name TBC</div>
+        <div class="team-card-role">Role TBC</div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-img reveal-clip d2">
+        <img src="images/team/member-6.jpg" alt="Team member" loading="lazy">
+        <img class="team-fun" src="images/team/member-6-fun.jpg" alt="" aria-hidden="true" loading="lazy">
+      </div>
+      <div class="reveal d3">
+        <div class="team-card-tag">Team</div>
+        <div class="team-card-name">Name TBC</div>
+        <div class="team-card-role">Role TBC</div>
       </div>
     </div>
 
@@ -646,5 +669,10 @@
 </script>
 
 <script src="js/shared.js"></script>
+<script>
+document.querySelectorAll('.team-img').forEach(function(el){
+  el.addEventListener('click',function(){ if(matchMedia('(hover: none)').matches) el.classList.toggle('is-fun'); });
+});
+</script>
 </body>
 </html>
