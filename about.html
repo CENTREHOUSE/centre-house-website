@@ -61,11 +61,11 @@
       display: flex; flex-direction: column; justify-content: flex-end;
       padding: 0 56px 88px; position: relative; overflow: hidden;
     }
-    .about-hero-bg {
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(19,112,83,.18) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(19,112,83,.1) 0%, transparent 60%);
+    .about-hero-bg { position: absolute; inset: 0; }
+    .about-hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 12%; display: block; }
+    .about-hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(5,5,5,.55) 0%, rgba(5,5,5,.05) 22%, rgba(5,5,5,.3) 50%, rgba(5,5,5,.94) 100%);
     }
     .about-hero > *:not(.about-hero-bg) { position: relative; z-index: 2; }
     .about-hero-eyebrow {
@@ -90,7 +90,7 @@
     }
     .about-hero-hl em {
       font-family: var(--serif); font-style: italic; font-weight: 700;
-      text-transform: none; color: var(--green); letter-spacing: -.01em;
+      text-transform: none; color: var(--egg); letter-spacing: -.01em;
     }
     .about-hero-foot {
       margin-top: 56px; padding-top: 40px;
@@ -305,6 +305,9 @@
       nav { padding: 20px 28px; }
       .nav-links { display: none; }
       .about-hero { padding: 0 28px 64px; }
+      .about-hero-foot { flex-direction: column; align-items: flex-start; gap: 24px; margin-top: 36px; padding-top: 28px; }
+      .about-hero-desc br { display: none; }
+      .about-hero-scroll { display: none; }
       .manifesto { padding: 80px 28px; grid-template-columns: 1fr; gap: 44px; }
       .approach { padding: 80px 28px; }
       .approach-grid { grid-template-columns: 1fr; }
@@ -369,14 +372,14 @@
 
 <!-- ── HERO ─────────────────────────────────────────── -->
 <section class="about-hero grain grain-dark">
-  <div class="about-hero-bg"></div>
+  <div class="about-hero-bg"><img src="images/team/group.jpg" alt="The Centre House team"></div>
   <h1 class="about-hero-hl reveal d1">
     THE PEOPLE<br>
     BEHIND <em>The Work.</em>
   </h1>
   <div class="about-hero-foot reveal d2">
     <p class="about-hero-desc">
-      A tight-knit team of creatives, strategists and storytellers<br>who genuinely care about what they make.
+      A tight-knit team of creatives, strategists and storytellers <br>who genuinely care about what they make.
     </p>
     <span class="about-hero-scroll">Scroll to explore ↓</span>
   </div>
