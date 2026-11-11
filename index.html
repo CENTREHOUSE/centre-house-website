@@ -791,9 +791,38 @@
       .testi-tab img { width: calc(var(--lw) * .78px); }
       .hero { padding: 0 28px 64px; }
     }
-      .about-detail-img { position: relative; }
-    .about-detail-img .team-fun { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 27% center; opacity: 0; transition: opacity .45s ease; }
-    .about-detail-img:hover .team-fun { opacity: 1; }
+      /* ─── TEAM SLIDER ───────────────────────────────────── */
+    .team-slider { padding: 20px 0 130px; }
+    .team-slider .section-head { margin: 0 56px 56px; }
+    .team-track {
+      display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+      padding: 0 56px; scroll-padding: 0 56px; scrollbar-width: none; cursor: grab;
+    }
+    .team-track::-webkit-scrollbar { display: none; }
+    .team-track.dragging { cursor: grabbing; scroll-snap-type: none; }
+    .team-slide { flex: 0 0 clamp(240px, 23vw, 340px); scroll-snap-align: start; color: var(--black); text-decoration: none; }
+    .team-slide-img { aspect-ratio: 4/5; overflow: hidden; background: #1a1a1a; }
+    .team-slide-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; pointer-events: none; transition: transform .9s cubic-bezier(.25,.46,.45,.94); }
+    .team-slide:hover .team-slide-img img { transform: scale(1.04); }
+    .team-slide-tag { margin-top: 20px; font-size: 10px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--green); }
+    .team-slide-name { margin-top: 6px; font-size: 22px; font-weight: 600; letter-spacing: -.01em; text-transform: uppercase; line-height: 1; }
+    .team-slide-role { margin-top: 6px; font-size: 13px; opacity: .45; }
+    .team-slider-foot { display: flex; justify-content: space-between; align-items: center; margin: 44px 56px 0; padding-top: 28px; border-top: 1px solid rgba(5,5,5,.1); }
+    .team-slider-link { font-size: 11px; font-weight: 500; letter-spacing: .15em; text-transform: uppercase; color: var(--black); text-decoration: none; }
+    .team-slider-link:hover { color: var(--green); }
+    .team-arrows { display: flex; gap: 10px; }
+    .team-arrows button {
+      width: 52px; height: 52px; border: 1px solid rgba(5,5,5,.2); background: none; cursor: pointer;
+      font-size: 18px; color: var(--black); transition: background .2s, color .2s, border-color .2s;
+    }
+    .team-arrows button:hover { background: var(--green); border-color: var(--green); color: var(--egg); }
+    @media (max-width: 960px) {
+      .team-slider { padding: 0 0 80px; }
+      .team-slider .section-head { margin: 0 28px 40px; }
+      .team-track { padding: 0 28px; scroll-padding: 0 28px; gap: 12px; }
+      .team-slide { flex-basis: 68vw; }
+      .team-slider-foot { margin: 32px 28px 0; }
+    }
 </style>
 </head>
 <body>
@@ -1231,7 +1260,6 @@
 <section class="about-detail">
   <div class="about-detail-img reveal-clip">
     <img src="images/team/group.jpg" alt="The Centre House team" style="width:100%;height:100%;object-fit:cover;display:block;">
-    <img class="team-fun" src="images/team/group-fun.jpg" alt="" aria-hidden="true" loading="lazy">
   </div>
 
   <div class="about-detail-content reveal-right d1">
@@ -1257,6 +1285,59 @@
         <div class="about-value-label">Our Promise</div>
         <div class="about-value-text">Honest communication, premium work, and a team that's as invested in your success as you are.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TEAM SLIDER ───────────────────────────────────── -->
+<section class="team-slider" id="team">
+  <div class="section-head reveal">
+    <span class="section-label">The Team</span>
+    <h2 class="section-title">Meet The <em>Crew</em></h2>
+  </div>
+  <div class="team-track reveal d1">
+    <a class="team-slide" href="about.html">
+      <div class="team-slide-img"><img src="images/team/sam.jpg" alt="Sam Rigney" loading="lazy"></div>
+      <div class="team-slide-tag">Founder</div>
+      <div class="team-slide-name">Sam Rigney</div>
+      <div class="team-slide-role">CEO &amp; Founder</div>
+    </a>
+    <a class="team-slide" href="about.html">
+      <div class="team-slide-img"><img src="images/team/savannah.jpg" alt="Savannah" loading="lazy"></div>
+      <div class="team-slide-tag">Marketing</div>
+      <div class="team-slide-name">Savannah</div>
+      <div class="team-slide-role">Marketing Account Manager</div>
+    </a>
+    <a class="team-slide" href="about.html">
+      <div class="team-slide-img"><img src="images/team/nathan.jpg" alt="Nathan" loading="lazy"></div>
+      <div class="team-slide-tag">Creative</div>
+      <div class="team-slide-name">Nathan</div>
+      <div class="team-slide-role">Head of Creative</div>
+    </a>
+    <a class="team-slide" href="about.html">
+      <div class="team-slide-img"><img src="images/team/lucy.jpg" alt="Lucy" loading="lazy"></div>
+      <div class="team-slide-tag">Marketing</div>
+      <div class="team-slide-name">Lucy</div>
+      <div class="team-slide-role">Marketing Account Manager</div>
+    </a>
+    <a class="team-slide" href="about.html">
+      <div class="team-slide-img"><img src="images/team/nick.jpg" alt="Nick" loading="lazy"></div>
+      <div class="team-slide-tag">Creative</div>
+      <div class="team-slide-name">Nick</div>
+      <div class="team-slide-role">Creative Editor &amp; Audio Engineer</div>
+    </a>
+    <a class="team-slide" href="about.html">
+      <div class="team-slide-img"><img src="images/team/jayde.jpg" alt="Jayde" loading="lazy"></div>
+      <div class="team-slide-tag">Design</div>
+      <div class="team-slide-name">Jayde</div>
+      <div class="team-slide-role">Graphic Designer &amp; Branding</div>
+    </a>
+  </div>
+  <div class="team-slider-foot">
+    <a class="team-slider-link" href="about.html">More about us &nbsp;→</a>
+    <div class="team-arrows">
+      <button type="button" class="team-prev" aria-label="Previous team member">←</button>
+      <button type="button" class="team-next" aria-label="Next team member">→</button>
     </div>
   </div>
 </section>
@@ -1592,5 +1673,27 @@
 
 </script>
 <script src="js/shared.js"></script>
+<script>
+(function(){
+  const track=document.querySelector('.team-track'); if(!track) return;
+  const step=()=>track.querySelector('.team-slide').offsetWidth+parseFloat(getComputedStyle(track).columnGap||16);
+  const atEnd=()=>track.scrollLeft+track.clientWidth>=track.scrollWidth-4;
+  const next=()=>track.scrollBy({left: atEnd()? -track.scrollWidth : step(), behavior:'smooth'});
+  document.querySelector('.team-next').addEventListener('click',next);
+  document.querySelector('.team-prev').addEventListener('click',()=>track.scrollBy({left:-step(),behavior:'smooth'}));
+  // drag to scroll with the mouse
+  let down=false,startX=0,startL=0,moved=false;
+  track.addEventListener('pointerdown',e=>{ if(e.pointerType!=='mouse') return; down=true; moved=false; startX=e.clientX; startL=track.scrollLeft; });
+  window.addEventListener('pointermove',e=>{ if(!down) return; const dx=e.clientX-startX; if(Math.abs(dx)>4){ moved=true; track.classList.add('dragging'); } track.scrollLeft=startL-dx; });
+  window.addEventListener('pointerup',()=>{ if(!down) return; down=false; track.classList.remove('dragging'); });
+  track.addEventListener('click',e=>{ if(moved){ e.preventDefault(); moved=false; } },true);
+  // gentle auto-advance while on screen, paused on hover or touch
+  let timer=null,paused=false,visible=false;
+  const run=()=>{ clearInterval(timer); if(visible&&!paused&&!matchMedia('(prefers-reduced-motion: reduce)').matches) timer=setInterval(next,3500); };
+  new IntersectionObserver(es=>{ visible=es[0].isIntersecting; run(); },{threshold:.4}).observe(track);
+  ['mouseenter','touchstart','focusin'].forEach(ev=>track.parentElement.addEventListener(ev,()=>{paused=true;run();},{passive:true}));
+  track.parentElement.addEventListener('mouseleave',()=>{paused=false;run();});
+})();
+</script>
 </body>
 </html>
