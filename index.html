@@ -1355,7 +1355,12 @@
       }
     });
   }, { threshold: .12 });
-  document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-clip').forEach(el=>obs.observe(el));
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(el=>obs.observe(el));
+  /* A fully clipped element never counts as on screen, so watch its parent instead */
+  const clipObs = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.querySelectorAll(':scope > .reveal-clip').forEach(c => c.classList.add('in')); clipObs.unobserve(e.target); }
+  }), { threshold: .1 });
+  document.querySelectorAll('.reveal-clip').forEach(el => clipObs.observe(el.parentElement));
 
   /* ── Trigger hero reveals ── */
   setTimeout(() => {
