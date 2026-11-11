@@ -430,3 +430,19 @@ footer { background: var(--black); padding: 60px var(--gutter); display: flex; a
   .faq-media { position: static; }
   .faq-media img { aspect-ratio: 3 / 2; }
 }
+
+/* featured project card + landscape films */
+.work.w12 { grid-column: span 12; }
+.work.feature { height: 78svh; min-height: 560px; }
+.work.feature .work-title { font-size: clamp(44px, 6vw, 96px); }
+.work.feature .work-over { left: 48px; bottom: 44px; }
+.work-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 6px; }
+.work-chips span { padding: 9px 14px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; background: rgba(255,255,251,.14); border: 1px solid rgba(255,255,251,.25); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.work-chips b { font-weight: 600; letter-spacing: 0; margin-right: 4px; }
+.films.land .film { aspect-ratio: 16 / 9; }
+@media (max-width: 960px) {
+  .work.feature { height: 120vw; max-height: 640px; min-height: 0; }
+  .work.feature .work-over { left: 20px; bottom: 24px; }
+  .films.land { grid-template-columns: 1fr; }
+  .films.land .film-item:last-child:nth-child(odd) .film { aspect-ratio: 16 / 9; }
+}
