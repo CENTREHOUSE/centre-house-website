@@ -1061,41 +1061,41 @@
     <h2 class="section-title">Sectors We <em>Know</em></h2>
   </div>
   <div class="sectors reveal">
-    <div class="sector is-open">
+    <a class="sector is-open" href="sector-hospitality.html">
       <img src="images/picks/martini.jpg" alt="Martini on a bar top" loading="lazy">
       <span class="sector-v" aria-hidden="true">Hospitality</span>
-      <h3 class="sector-h">Hospitality</h3>
-    </div>
-    <div class="sector">
+      <h3 class="sector-h">Hospitality<span class="sector-cta">Explore the work &nbsp;→</span></h3>
+    </a>
+    <a class="sector" href="sector-sport.html">
       <img src="images/picks/budgy-nfl.jpg" alt="Beach shoot with NFL helmets and a football" loading="lazy">
       <span class="sector-v" aria-hidden="true">Sport</span>
-      <h3 class="sector-h">Sport</h3>
-    </div>
-    <div class="sector">
+      <h3 class="sector-h">Sport<span class="sector-cta">Explore the work &nbsp;→</span></h3>
+    </a>
+    <a class="sector" href="sector-fashion-lifestyle.html">
       <img src="images/picks/earls-knit.jpg" alt="Model in an Earls knit and cap" loading="lazy">
       <span class="sector-v" aria-hidden="true">Fashion &amp; Lifestyle</span>
-      <h3 class="sector-h">Fashion &amp; Lifestyle</h3>
-    </div>
-    <div class="sector">
+      <h3 class="sector-h">Fashion &amp; Lifestyle<span class="sector-cta">Explore the work &nbsp;→</span></h3>
+    </a>
+    <a class="sector" href="sector-property-finance.html">
       <img src="images/picks/resort-bikes.jpg" alt="Couple cycling past a white resort building" loading="lazy">
       <span class="sector-v" aria-hidden="true">Property &amp; Finance</span>
-      <h3 class="sector-h">Property &amp; Finance</h3>
-    </div>
-    <div class="sector">
+      <h3 class="sector-h">Property &amp; Finance<span class="sector-cta">Explore the work &nbsp;→</span></h3>
+    </a>
+    <a class="sector" href="sector-food-drink.html">
       <img src="images/picks/bbq-rib.jpg" alt="Chef holding up a smoked beef rib" loading="lazy">
       <span class="sector-v" aria-hidden="true">Food &amp; Drink Brands</span>
-      <h3 class="sector-h">Food &amp; Drink Brands</h3>
-    </div>
-    <div class="sector">
+      <h3 class="sector-h">Food &amp; Drink Brands<span class="sector-cta">Explore the work &nbsp;→</span></h3>
+    </a>
+    <a class="sector" href="sector-music-events.html">
       <img src="images/picks/live-guitar.jpg" alt="Musician playing guitar on stage in orange light" loading="lazy">
       <span class="sector-v" aria-hidden="true">Music &amp; Events</span>
-      <h3 class="sector-h">Music &amp; Events</h3>
-    </div>
-    <div class="sector">
+      <h3 class="sector-h">Music &amp; Events<span class="sector-cta">Explore the work &nbsp;→</span></h3>
+    </a>
+    <a class="sector" href="sector-education-community.html">
       <img src="images/sections/sec-community.jpg" alt="Guests laughing at an Old Ignatians' Union lunch" loading="lazy">
       <span class="sector-v" aria-hidden="true">Education &amp; Community</span>
-      <h3 class="sector-h">Education &amp; Community</h3>
-    </div>
+      <h3 class="sector-h">Education &amp; Community<span class="sector-cta">Explore the work &nbsp;→</span></h3>
+    </a>
   </div>
 </section>
 
@@ -1667,7 +1667,10 @@
     panels.forEach(p => {
       const open = () => { panels.forEach(x => x.classList.toggle('is-open', x === p)); };
       p.addEventListener('mouseenter', open);
-      p.addEventListener('click', open);
+      p.addEventListener('click', e => {
+        /* touch screens wide enough for the accordion: first tap opens the panel, second tap follows the link */
+        if (!p.classList.contains('is-open') && matchMedia('(hover: none)').matches && innerWidth > 960) { e.preventDefault(); open(); }
+      });
     });
   })();
 

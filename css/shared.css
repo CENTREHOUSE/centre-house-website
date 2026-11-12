@@ -146,3 +146,10 @@ fieldset.field { border-width: 0 0 1px; min-width: 0; }
 
 /* white logo over dark heroes until the nav turns solid */
 body:not(.menu-open) nav:not(.scrolled) .nav-logo img { filter: brightness(0) invert(1); transition: filter .3s; }
+
+/* sector tiles link to their sector pages */
+a.sector { display: block; color: #FFFFFB; text-decoration: none; }
+.sector-cta { display: block; margin-top: 16px; font-size: 11px; font-weight: 500; letter-spacing: .14em; opacity: .8; }
+.sector.is-open .sector-cta { animation: ctaIn .5s .45s both; }
+@keyframes ctaIn { from { opacity: 0; transform: translateY(8px); } to { opacity: .8; transform: none; } }
+@media (max-width: 960px) { .sector-cta { margin-top: 8px; font-size: 9px; } }
