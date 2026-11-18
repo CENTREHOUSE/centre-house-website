@@ -511,3 +511,8 @@ footer { background: var(--black); padding: 60px var(--gutter); display: flex; a
 .intro-hl { font-size: clamp(38px, 4.4vw, 70px); }
 .intro .fit-list li { font-size: 18px; letter-spacing: -.005em; }
 @media (max-width: 960px) { .intro-hl { font-size: clamp(30px, 8vw, 44px); } .intro .fit-list li { font-size: 15px; } }
+/* single website frame in the intro media slot */
+.im-site { display: block; background: #e9e9e6; }
+.im-site .frame { height: 100%; display: flex; flex-direction: column; border-radius: 0; box-shadow: none; }
+.im-site .frame img { flex: 1; min-height: 0; aspect-ratio: auto; width: 100%; object-fit: cover; object-position: top left; transition: transform 1.2s var(--ease); }
+.im-site:hover .frame img { transform: scale(1.02); }
