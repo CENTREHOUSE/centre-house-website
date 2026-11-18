@@ -516,3 +516,12 @@ footer { background: var(--black); padding: 60px var(--gutter); display: flex; a
 .im-site .frame { height: 100%; display: flex; flex-direction: column; border-radius: 0; box-shadow: none; }
 .im-site .frame img { flex: 1; min-height: 0; aspect-ratio: auto; width: 100%; object-fit: cover; object-position: top left; transition: transform 1.2s var(--ease); }
 .im-site:hover .frame img { transform: scale(1.02); }
+/* the intro website frame scrolls through the whole homepage */
+.im-site .frame img.site-scroll { transform: none; object-position: 50% 0%; animation: siteScroll 34s cubic-bezier(.45,0,.55,1) infinite; }
+.im-site:hover .frame img.site-scroll { transform: none; animation-play-state: paused; }
+@keyframes siteScroll {
+  0%, 8%   { object-position: 50% 0%; }
+  46%, 54% { object-position: 50% 100%; }
+  92%, 100% { object-position: 50% 0%; }
+}
+@media (prefers-reduced-motion: reduce) { .im-site .frame img.site-scroll { animation: none; } }
