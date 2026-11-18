@@ -201,11 +201,11 @@
     }
     .clients-label {
       flex-shrink: 0;
-      padding: 0 48px;
+      padding: 0 56px;
       border-right: 1px solid rgba(255,255,251,.15);
       display: flex; align-items: center;
       font-family: var(--sans);
-      font-size: clamp(18px, 1.8vw, 28px);
+      font-size: clamp(20px, 2.1vw, 34px);
       font-weight: 600; letter-spacing: -.025em;
       text-transform: uppercase; line-height: 1;
       color: var(--egg);
@@ -214,23 +214,24 @@
     .clients-scroll { overflow: hidden; flex: 1; }
     .clients-track {
       display: flex; white-space: nowrap;
-      animation: clientscroll 36s linear infinite;
+      animation: clientscroll 48s linear infinite;
     }
     .clients-track:hover { animation-play-state: paused; }
     .client-item {
       display: inline-flex; align-items: center;
-      padding: 0 52px; height: 80px;
+      padding: 0 60px; height: 140px;
       border-right: 1px solid rgba(255,255,251,.1);
       text-decoration: none;
       transition: background .25s;
     }
     .client-item:hover { background: rgba(255,255,251,.08); }
     .client-item img {
-      height: 22px; width: auto; display: block;
+      height: 46px; width: auto; max-width: 190px; object-fit: contain; display: block;
       filter: brightness(0) invert(1); opacity: 1;
       transition: opacity .3s;
     }
     .client-item:hover img { opacity: .7; }
+    .client-item img.sq { height: 76px; }
     /* Text fallback shown when no <img> is present */
     .client-name {
       font-family: var(--sans);
@@ -823,6 +824,12 @@
       .team-slide { flex-basis: 68vw; }
       .team-slider-foot { margin: 32px 28px 0; }
     }
+    @media (max-width: 960px) {
+      .client-item { height: 96px; padding: 0 36px; }
+      .client-item img { height: 32px; max-width: 130px; }
+      .client-item img.sq { height: 54px; }
+      .clients-label { padding: 0 24px; font-size: 17px; }
+    }
 </style>
 </head>
 <body>
@@ -894,17 +901,17 @@
       <div class="client-item"><img src="images/client-logo-cub.png" alt="CUB"></div>
       <div class="client-item"><img src="images/client-logo-zjoosh.png" alt="Zjoosh"></div>
       <div class="client-item"><img src="images/client-logo-esteban.png" alt="Esteban"></div>
-      <div class="client-item"><img src="images/client-logo-tqm.png" alt="Tequila Mockingbird"></div>
+      <div class="client-item"><img class="sq" src="images/client-logo-tqm.png" alt="Tequila Mockingbird"></div>
       <div class="client-item"><img src="images/client-logo-nikkita.png" alt="Nikkita"></div>
-      <div class="client-item"><img src="images/client-logo-rebeldonuts.png" alt="Rebel Donuts"></div>
-      <div class="client-item"><img src="images/client-logo-7thandyork.png" alt="7th & York"></div>
+      <div class="client-item"><img class="sq" src="images/client-logo-rebeldonuts.png" alt="Rebel Donuts"></div>
+      <div class="client-item"><img class="sq" src="images/client-logo-7thandyork.png" alt="7th & York"></div>
       <div class="client-item"><img src="images/client-logo-whoiselijah.png" alt="Who Is Elijah"></div>
       <div class="client-item"><img src="images/client-logo-tasteliving.png" alt="Taste Living"></div>
       <div class="client-item"><img src="images/client-logo-bandu.png" alt="Bandu"></div>
       <div class="client-item"><img src="images/client-logo-boa.png" alt="BOA"></div>
-      <div class="client-item"><img src="images/client-logo-casaesquina.png" alt="Casa Esquina"></div>
+      <div class="client-item"><img class="sq" src="images/client-logo-casaesquina.png" alt="Casa Esquina"></div>
       <div class="client-item"><img src="images/client-logo-darlodeli.png" alt="Darlo Deli"></div>
-      <div class="client-item"><img src="images/client-logo-bistrorex.png" alt="Bistro Rex"></div>
+      <div class="client-item"><img class="sq" src="images/client-logo-bistrorex.png" alt="Bistro Rex"></div>
       <div class="client-item"><img src="images/client-logo-shoshai.png" alt="Shoshai"></div>
       <div class="client-item"><img src="images/client-logo-reprecisionhealth.png" alt="Re:Precision Health"></div>
       <div class="client-item"><img src="images/client-logo-thediddy.png" alt="The Diddy"></div>
@@ -918,17 +925,17 @@
       <div class="client-item"><img src="images/client-logo-cub.png" alt="CUB"></div>
       <div class="client-item"><img src="images/client-logo-zjoosh.png" alt="Zjoosh"></div>
       <div class="client-item"><img src="images/client-logo-esteban.png" alt="Esteban"></div>
-      <div class="client-item"><img src="images/client-logo-tqm.png" alt="Tequila Mockingbird"></div>
+      <div class="client-item"><img class="sq" src="images/client-logo-tqm.png" alt="Tequila Mockingbird"></div>
       <div class="client-item"><img src="images/client-logo-nikkita.png" alt="Nikkita"></div>
-      <div class="client-item"><img src="images/client-logo-rebeldonuts.png" alt="Rebel Donuts"></div>
-      <div class="client-item"><img src="images/client-logo-7thandyork.png" alt="7th & York"></div>
+      <div class="client-item"><img class="sq" src="images/client-logo-rebeldonuts.png" alt="Rebel Donuts"></div>
+      <div class="client-item"><img class="sq" src="images/client-logo-7thandyork.png" alt="7th & York"></div>
       <div class="client-item"><img src="images/client-logo-whoiselijah.png" alt="Who Is Elijah"></div>
       <div class="client-item"><img src="images/client-logo-tasteliving.png" alt="Taste Living"></div>
       <div class="client-item"><img src="images/client-logo-bandu.png" alt="Bandu"></div>
       <div class="client-item"><img src="images/client-logo-boa.png" alt="BOA"></div>
-      <div class="client-item"><img src="images/client-logo-casaesquina.png" alt="Casa Esquina"></div>
+      <div class="client-item"><img class="sq" src="images/client-logo-casaesquina.png" alt="Casa Esquina"></div>
       <div class="client-item"><img src="images/client-logo-darlodeli.png" alt="Darlo Deli"></div>
-      <div class="client-item"><img src="images/client-logo-bistrorex.png" alt="Bistro Rex"></div>
+      <div class="client-item"><img class="sq" src="images/client-logo-bistrorex.png" alt="Bistro Rex"></div>
       <div class="client-item"><img src="images/client-logo-shoshai.png" alt="Shoshai"></div>
       <div class="client-item"><img src="images/client-logo-reprecisionhealth.png" alt="Re:Precision Health"></div>
       <div class="client-item"><img src="images/client-logo-thediddy.png" alt="The Diddy"></div>
