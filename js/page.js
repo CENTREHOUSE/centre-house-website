@@ -63,6 +63,20 @@
     v.addEventListener('click', toggle);
   });
 
+  /* Problem / answer panels: one row open at a time, auto-advancing while on screen */
+  document.querySelectorAll('.pf').forEach(pf => {
+    const items = [...pf.querySelectorAll('.pf-item')];
+    const open = i => items.forEach((it, k) => {
+      it.classList.toggle('is-open', k === i);
+      it.querySelector('.pf-q').setAttribute('aria-expanded', String(k === i));
+    });
+    items.forEach((it, i) => {
+      it.querySelector('.pf-q').addEventListener('click', () => open(i));
+      it.addEventListener('animationend', e => { if (e.animationName === 'pfBar') open((i + 1) % items.length); });
+    });
+    new IntersectionObserver(es => pf.classList.toggle('playing', es[0].isIntersecting), { threshold: .4 }).observe(pf);
+  });
+
   const pt = document.getElementById('page-transition');
   if (pt) {
     requestAnimationFrame(() => requestAnimationFrame(() => pt.classList.add('is-revealed')));

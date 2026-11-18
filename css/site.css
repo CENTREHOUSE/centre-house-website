@@ -525,3 +525,36 @@ footer { background: var(--black); padding: 60px var(--gutter); display: flex; a
   92%, 100% { object-position: 50% 0%; }
 }
 @media (prefers-reduced-motion: reduce) { .im-site .frame img.site-scroll { animation: none; } }
+
+/* ── PROBLEM / ANSWER PANEL (replaces the arrow lists) ──
+   One statement open at a time with its answer; steps through on its own, click to jump. */
+.intro-media { grid-column: 1 / 8; }
+.intro .pf { grid-column: 8 / 13; grid-row: 2; align-self: stretch; padding-left: 32px; display: flex; flex-direction: column; }
+.pf-title { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: clamp(26px, 2.4vw, 36px); color: var(--green); letter-spacing: -.01em; line-height: 1; padding-bottom: 28px; }
+.pf-item { position: relative; border-top: 1px solid var(--line); }
+.pf-item:last-child { border-bottom: 1px solid var(--line); }
+.pf-q { width: 100%; display: grid; grid-template-columns: 40px 1fr 20px; align-items: baseline; gap: 0 8px; padding: 24px 0; background: none; border: 0; text-align: left; cursor: pointer; font-family: var(--sans); color: var(--black); }
+.pf-n { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--green); }
+.pf-t { font-size: clamp(18px, 1.55vw, 23px); font-weight: 600; letter-spacing: -.015em; line-height: 1.2; opacity: .38; transition: opacity .4s; }
+.pf-item.is-open .pf-t, .pf-q:hover .pf-t { opacity: 1; }
+.pf-i { position: relative; width: 14px; height: 14px; align-self: center; justify-self: end; }
+.pf-i::before, .pf-i::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; background: var(--green); transition: transform .45s var(--ease); }
+.pf-i::after { transform: rotate(90deg); }
+.pf-item.is-open .pf-i::after { transform: rotate(0deg); }
+.pf-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .6s var(--ease); }
+.pf-item.is-open .pf-a { grid-template-rows: 1fr; }
+.pf-a > div { overflow: hidden; }
+.pf-a p { padding: 0 28px 28px 48px; font-size: 16px; line-height: 1.65; color: rgba(5,5,5,.66); opacity: 0; transform: translateY(8px); transition: opacity .5s .15s, transform .6s .15s var(--ease); }
+.pf-item.is-open .pf-a p { opacity: 1; transform: none; }
+/* progress line on the open row */
+.pf-item::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--green); transform: scaleX(0); transform-origin: left; z-index: 1; }
+.pf.playing .pf-item.is-open::after { animation: pfBar 6.5s linear forwards; }
+.pf.playing:hover .pf-item.is-open::after { animation-play-state: paused; }
+@keyframes pfBar { to { transform: scaleX(1); } }
+@media (max-width: 960px) {
+  .intro-media, .intro .pf { grid-column: 1; grid-row: auto; }
+  .intro .pf { padding-left: 0; }
+  .pf-q { padding: 20px 0; grid-template-columns: 34px 1fr 18px; }
+  .pf-a p { padding: 0 8px 22px 42px; font-size: 15px; }
+}
+@media (prefers-reduced-motion: reduce) { .pf.playing .pf-item.is-open::after { animation: none; } }
